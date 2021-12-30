@@ -1,0 +1,13 @@
+2021-12-29 15:05:36,849 - INFO - Database - end with duration 00:00 
+2021-12-29 15:05:37,206 - INFO - view data - end with duration 00:00 
+2021-12-29 15:05:37,224 - INFO - groupby - end with duration 00:00 
+2021-12-29 15:05:37,590 - INFO - view data - end with duration 00:00 
+2021-12-29 15:05:37,604 - CRITICAL - Html Jinja - Critical Error 
+2021-12-29 15:05:37,604 - CRITICAL - Database - [Errno 2] No such file or directory: '' 
+2021-12-29 15:05:37,604 - CRITICAL - Database - Traceback (most recent call last):
+  File "/root/projects/bambou/nodes/__init__.py", line 167, in _run
+    df = self.run(in1)
+  File "/root/projects/bambou/nodes/htmljinja/main.py", line 26, in run
+    with open(pathfile, 'w') as f:
+FileNotFoundError: [Errno 2] No such file or directory: ''
+ 

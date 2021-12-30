@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<a class="siimple-menu-item" href="/projects"><div class="siimple-btn--big icon-books"></div></a>
+{% endblock %}
+
+{% block navbarbottom %}
+<a class="siimple-menu-item" href="/authorizations"><div class="siimple-btn--big icon-shield"></div></a>
+<a class="siimple-menu-item" href="/users"><div class="siimple-btn--big icon-users"></div></a>
+<a class="siimple-menu-item" href="/settings"><div class="siimple-btn--big icon-param"></div></a>
+{% endblock %}
+
+{% block body %}
+<div class="siimple--float-left siimple-h2">Projects</div>
+<div class="siimple--float-right"><a class="siimple-menu-item"><div class="siimple-btn--big icon-add"  onclick="addproject()"></div></a></div>
+<div class="search icon-search"><input id="search" type="text" class="siimple-input"></div>
+<div id = "table" class="siimple-table minimal-table">
+    <div class="siimple-table-header">
+        <div class="siimple-table-row">
+            <div class="siimple-table-cell hidden">Id</div>
+            <div class="siimple-table-cell">Name</div>
+            <div class="siimple-table-cell hidden">Resume</div>
+            <div class="siimple-table-cell hidden">User</div>
+        </div>
+    </div>
+    <div class="siimple-table-body">
+        {% for project in projects %}
+        <div class="siimple-table-row" id="project{{ project.id }}" onclick="viewmodal('project{{ project.id }}')">
+            <div class="siimple-table-cell hidden">{{ project.id }}</div>
+            <div class="siimple-table-cell">{{ project.name }}</div>
+            <div class="siimple-table-cell hidden">{{ project.resume }}</div>
+            <div class="siimple-table-cell hidden">{% for user in project.users %}user{{ user.id}};{% endfor %}</div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="siimple-modal siimple-modal--medium" id="modal-project" style="display:none;">
+        <div class="siimple-modal-content">
+            <div class="siimple-modal-header">
+                <div class="siimple-modal-header-title">Project</div>
+                <div class="siimple-modal-header-close" id="modal-close-project"></div>
+            </div>
+            <div class="siimple-modal-body">
+                <form action="" method="POST" id="formproject" name="formproject">
+                    <table>
+                        <tr>
+                            <td><label class="siimple-label">Name: </label></td>
+                            <td><input name="name" id="name" class="siimple-input siimple-input--fluid" value="" required></td>
+                        </tr>
+                        <tr>
+                            <td><label class="siimple-label">Resume: </label></td>
+                            <td><textarea class="siimple-textarea siimple-textarea--fluid" rows="3" name="resume" id="resume"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><label class="siimple-label">Users: </label></td>
+                            <td>
+                                {% for user in users %}
+                                <div class="siimple-checkbox">
+                                    <input class="checkboxuser" type="checkbox" id="user{{ user.id }}" name="user{{user.id}}">
+                                    <label for="user{{ user.id }}"></label>
+                                </div>
+                                <label class="siimple-label">{{ user.name }}</label><br/>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <form action=""  method="POST" id="formprojectdel" name="formprojectdel">
+                    <input class="hidden" name="id" id="id" value="">
+                </form>
+            </div>
+            <div class="siimple-modal-footer">
+                <div class="siimple-navbar">
+                    <div class="siimple-btn  siimple-btn--big siimple-btn--error icon-del" id="del_project" onclick="window.document.formprojectdel.submit()"></div>
+                    <div class="siimple--float-right">
+                        <div class="siimple--float-right siimple-btn siimple-btn--big icon-save siimple-btn--primary" id="save_project" onclick="window.document.formproject.submit()"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("modal-close-project").addEventListener("click", function () {
+        document.getElementById("modal-project").style.display = "none";
+    });
+    function clearuser(){
+        document.querySelectorAll('.checkboxuser').forEach(function(input) {
+            input.checked = false;
+        });
+    }
+    function viewmodal(id) {
+        document.getElementById("modal-project").style.display = "";
+        document.getElementById("del_project").style.display = "";
+        document.getElementById("formproject").setAttribute('action', '/project/'+document.getElementById(id).getElementsByTagName('div')[0].textContent)
+        document.getElementById("formprojectdel").setAttribute('action', '/delproject/'+document.getElementById(id).getElementsByTagName('div')[0].textContent)
+        document.getElementById('name').value = document.getElementById(id).getElementsByTagName('div')[1].textContent;
+        document.getElementById('resume').value = document.getElementById(id).getElementsByTagName('div')[2].textContent;
+        document.getElementById('id').value = id;
+        clearuser();
+        document.getElementById(id).getElementsByTagName('div')[3].textContent.split(";").forEach(function(iduser) {
+            document.getElementById(iduser).checked = true;
+        });
+    };
+    function addproject(){
+        document.getElementById("modal-project").style.display = "";
+        document.getElementById("formproject").setAttribute('action', '/project');
+        document.getElementById("del_project").style.display = "none";
+        document.getElementById('name').value = "";
+        document.getElementById('resume').value = "";
+        document.getElementById('name').focus();
+        clearuser();
+        document.getElementById('user{{ current_user.id}}').checked = true;
+    }
+</script>
+{% endblock %}

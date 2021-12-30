@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<a class="siimple-menu-item" href="/projects"><div class="siimple-btn--big icon-books"></div></a>
+
+
+{% endblock %}
+
+{% block body %}
+<div class="siimple--float-left siimple-h2">Authorizations</div>
+<div class="siimple--float-right"><a class="siimple-menu-item"><div class="siimple-btn--big icon-add"  onclick="addauth()"></div></a></div>
+
+<div class="search icon-search"><input id="search" type="text" class="siimple-input"></div>
+<div id = "table" class="siimple-table minimal-table">
+    <div class="siimple-table-header">
+        <div class="siimple-table-row">
+            <div class="siimple-table-cell hidden">Id</div>
+            <div class="siimple-table-cell">Name</div>
+            <div class="siimple-table-cell hidden">Authorizations</div>
+
+        </div>
+    </div>
+    <div class="siimple-table-body">
+        {% for authorization in authorizations %}
+        <div class="siimple-table-row" id="authorization{{ authorization.id }}" onclick="viewmodal('authorization{{ authorization.id }}')">
+            <div class="siimple-table-cell hidden">{{ authorization.id }}</div>
+            <div class="siimple-table-cell">{{ authorization.name }}</div>
+            <div class="siimple-table-cell hidden">{% for auth in authorization.authorizations %}{{ auth.modul}}_{{ auth.key}};{% endfor %}</div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="siimple-modal siimple-modal--medium" id="modal-auth" style="display:none;">
+        <div class="siimple-modal-content">
+            <div class="siimple-modal-header">
+                <div class="siimple-modal-header-title">Authorization</div>
+                <div class="siimple-modal-header-close" id="modal-close-auth"></div>
+            </div>
+            <div class="siimple-modal-body">
+                <form action="" method="POST" id="formauth" name="formauth">
+                    <table>
+                        <tr>
+                            <td><label class="siimple-label">Name: </label></td>
+                            <td><input name="name" id="name" class="siimple-input siimple-input--fluid" value="" required></td>
+                        </tr>
+                        {% for authorizationofapp in authorizationsofapp %}
+                        <tr>
+                            <td><label class="siimple-label">{{ authorizationofapp }}</label></td>
+                            <td></td>
+                        </tr>
+                            {% for authorization in authorizationsofapp[authorizationofapp] %}
+                            <tr>
+                                <td><label class="siimple-label siimple--float-right">{{ authorization }}</label></td>
+                                <td><div class="siimple-switch"><input class="checkboxauthorization" type="checkbox" id="{{ authorizationofapp }}_{{ authorization }}" name="{{ authorizationofapp }}_{{ authorization }}"><label for="{{ authorizationofapp }}_{{ authorization }}"></label></div></td>        
+                            </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </table>
+                </form>
+                <form action=""  method="POST" id="formauthdel" name="formauthdel">
+                    <input class="hidden" name="id" id="id" value="">
+                </form>
+            </div>
+            <div class="siimple-modal-footer">
+                <div class="siimple-navbar">
+                    <div class="siimple-btn  siimple-btn--big siimple-btn--error icon-del" id="del_auth" onclick="window.document.formauthdel.submit()"></div>
+                    <div class="siimple--float-right">
+                        <div class="siimple--float-right siimple-btn siimple-btn--big icon-save siimple-btn--primary" id="save_auth" onclick="window.document.formauth.submit()"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("modal-close-auth").addEventListener("click", function () {
+        document.getElementById("modal-auth").style.display = "none";
+    });
+    function clearauthorization(){
+        document.querySelectorAll('.checkboxauthorization').forEach(function(input) {
+            input.checked = false;
+        });
+    }
+    function viewmodal(id) {
+        document.getElementById("modal-auth").style.display = "";
+        document.getElementById("del_auth").style.display = "";
+        document.getElementById("formauth").setAttribute('action', '/authorization/'+document.getElementById(id).getElementsByTagName('div')[0].textContent)
+        document.getElementById("formauthdel").setAttribute('action', '/delauthorization/'+document.getElementById(id).getElementsByTagName('div')[0].textContent)
+        document.getElementById('name').value = document.getElementById(id).getElementsByTagName('div')[1].textContent;
+        document.getElementById('id').value = id;
+        clearauthorization();
+        document.getElementById(id).getElementsByTagName('div')[2].textContent.split(";").forEach(function(auth) {
+            document.getElementById(auth).checked = true;
+        });
+    };
+    function addauth(){
+        document.getElementById("modal-auth").style.display = "";
+        document.getElementById("formauth").setAttribute('action', '/authorization');
+        document.getElementById("del_auth").style.display = "none";
+        document.getElementById('name').value = "";
+        document.getElementById('name').focus();
+        clearauthorization();
+    }
+</script>
+{% endblock %}

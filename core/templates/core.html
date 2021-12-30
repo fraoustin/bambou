@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block navbar %}
+<a class="siimple-menu-item" href="/projects"><div class="siimple-btn--big icon-books"  title="manage projects"></div></a>
+{% endblock %}
+
+{% block body %}
+<div class="siimple--float-left siimple-h2">Flow</div>
+<div class="siimple--float-right"><a class="siimple-menu-item"><div class="siimple-btn--big icon-add"  onclick="addflow()"></div></a></div>
+
+
+<div class="search icon-search"><input id="search" type="text" class="siimple-input"></div>
+
+<div id = "table" class="siimple-table minimal-table">
+    <div class="siimple-table-header">
+        <div class="siimple-table-row">
+            <div class="siimple-table-cell hidden">Id</div>
+            <div class="siimple-table-cell">Name</div>
+            <div class="siimple-table-cell hidden">Last modified by</div>
+            <div class="siimple-table-cell hidden">Resume</div>
+            <div class="siimple-table-cell hidden">Project</div>
+            <div class="siimple-table-cell"></div>
+
+        </div>
+    </div>
+    <div class="siimple-table-body">
+        {% for project in user.projects %}
+        {% if project.flows|length > 0 %}
+        {% if user.projects|length > 1 %}
+        <div class="siimple-table-row">
+            <div class="siimple-table-cell hidden">{{ project.id }}</div>
+            <div class="siimple-table-cell siimple-h4">{{ project.name }}</div>
+            <div class="siimple-table-cell hidden"></div>
+            <div class="siimple-table-cell hidden">{{ project.resume }}</div>
+            <div class="siimple-table-cell hidden"></div>
+            <div class="siimple-table-cell"></div>
+        </div>
+        {% endif %}
+        {% for flow in project.flows %}
+        <div class="siimple-table-row" id="flow{{ flow.id }}" onclick="window.location.href = '/flow/{{ flow.id }}'" onMouseOver="viewparam('param{{ flow.id }}')" onMouseOut="hideparam('param{{ flow.id }}')">
+            <div class="siimple-table-cell hidden">{{ flow.id }}</div>
+            <div class="siimple-table-cell">{{ flow.name }}</div>
+            <div class="siimple-table-cell hidden">{{ flow.lastmodifiedby }}</div>
+            <div class="siimple-table-cell hidden">{{ flow.resume }}</div>
+            <div class="siimple-table-cell hidden">{{ flow.project }}</div>
+            <div class="siimple-table-cell" style="width:66px"><div id="param{{ flow.id }}" class="siimple-btn icon-param" style="display: none;" onclick="viewmodal('flow{{ flow.id }}');event.stopPropagation();"></div></div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div class="siimple-modal siimple-modal--medium" id="modal-flow" style="display:none;">
+        <div class="siimple-modal-content">
+            <div class="siimple-modal-header">
+                <div class="siimple-modal-header-title">Flow</div>
+                <div class="siimple-modal-header-close" id="modal-close-flow"></div>
+            </div>
+            <div class="siimple-modal-body">
+                <form action="" method="POST" id="formflow" name="formflow">
+                    <table>
+                        <tr>
+                            <td><label class="siimple-label">id: </label></td>
+                            <td><input name="idflow" id="idflow" class="siimple-input siimple-input--fluid" value="" disabled></td>
+                        </tr>
+                        <tr>
+                            <td><label class="siimple-label">Name: </label></td>
+                            <td><input name="name" id="name" class="siimple-input siimple-input--fluid" value="" required></td>
+                        </tr>
+                        <tr>
+                            <td><label class="siimple-label">Resume: </label></td>
+                            <td><textarea class="siimple-textarea siimple-textarea--fluid" rows="3" name="resume" id="resume"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><label class="siimple-label">Project: </label></td>
+                            <td>
+                                <select class="siimple-select siimple-select--fluid" id="project" name="project"> 
+                                {% for project in user.projects %}
+                                    <option value="{{ project.id }}">{{ project.name }}</option>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <form action=""  method="POST" id="formflowdel" name="formflowdel">
+                    <input class="hidden" name="id" id="id" value="">
+                </form>
+            </div>
+            <div class="siimple-modal-footer">
+                <div class="siimple-navbar">
+                    <div class="siimple-btn  siimple-btn--big siimple-btn--error icon-del" id="del_flow" onclick="window.document.formflowdel.submit()"></div>
+                    <div class="siimple--float-right">
+                        <div class="siimple--float-right siimple-btn siimple-btn--big icon-save siimple-btn--primary" id="save_flow" onclick="window.document.formflow.submit()"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("modal-close-flow").addEventListener("click", function () {
+        document.getElementById("modal-flow").style.display = "none";
+    });
+    function hideparam(id){
+        document.getElementById(id).style.display = "none";
+    };
+    function viewparam(id){
+        document.getElementById(id).style.display = "";
+    };
+    function viewmodal(id) {
+        document.getElementById("modal-flow").style.display = "";
+        document.getElementById("del_flow").style.display = "";
+        document.getElementById("formflow").setAttribute('action', '/flow/'+document.getElementById(id).getElementsByTagName('div')[0].textContent)
+        document.getElementById("formflowdel").setAttribute('action', '/delflow/'+document.getElementById(id).getElementsByTagName('div')[0].textContent)
+        document.getElementById('name').value = document.getElementById(id).getElementsByTagName('div')[1].textContent;
+        document.getElementById('resume').value = document.getElementById(id).getElementsByTagName('div')[3].textContent;
+        document.getElementById('id').value = id;
+        document.getElementById('idflow').value = document.getElementById(id).getElementsByTagName('div')[0].textContent;
+        document.getElementById('project').value = document.getElementById(id).getElementsByTagName('div')[4].textContent;
+    };
+    function addflow(){
+        document.getElementById("modal-flow").style.display = "";
+        document.getElementById("formflow").setAttribute('action', '/flow');
+        document.getElementById("del_flow").style.display = "none";
+        document.getElementById('name').value = "";
+        document.getElementById('resume').value = "";
+        document.getElementById('name').focus();
+    }
+</script>
+{% endblock %}

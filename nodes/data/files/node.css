@@ -1,0 +1,58 @@
+
+@font-face{
+    font-family:icomoon;
+    src:url(/data/icomoon.woff) format('woff');
+    font-weight:400;
+    font-style:normal
+}
+
+.icon-data,
+.icon-download {
+    font-family: icomoon;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+.icon-data:before {
+    content: "\ea71"
+}
+
+.icon-download:before {
+    content: "\e9c7"
+}
+
+#modal-data.siimple-modal--medium .siimple-modal-content {
+    max-width: 90%;
+}
+
+#data-table .siimple-table-header {
+    position: fixed;
+    background: white;
+}
+
+#modal-data .siimple-modal-body {
+    padding-top: 0px;
+}
+
+#modal-data .siimple-table-body .siimple-table-row:first-child{
+    height: 92px;
+}
+
+#modal-data .siimple-table-body .siimple-table-row:first-child:not(.hidden) .siimple-table-cell{
+    vertical-align: bottom;
+}
+
+#modal-data #modal-data-close{
+    padding-left: 20px;
+}
+
+#data-table .siimple-table-header .siimple-table-cell{
+   text-overflow: ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
+}

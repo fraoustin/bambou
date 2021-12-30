@@ -1,0 +1,44 @@
+2021-12-29 09:33:31,082 - INFO - schoolsex - end with duration 00:00 
+2021-12-29 09:33:31,087 - INFO - schoolone - end with duration 00:00 
+2021-12-29 09:33:31,120 - INFO - schooltwo - end with duration 00:00 
+2021-12-29 09:33:31,122 - INFO - concat - end with duration 00:00 
+2021-12-29 09:33:31,540 - INFO - view data - end with duration 00:00 
+2021-12-29 09:33:31,555 - INFO - For-each - end with duration 00:00 
+2021-12-29 09:33:31,576 - INFO - all note - end with duration 00:00 
+2021-12-29 09:33:31,583 - INFO - join - end with duration 00:00 
+2021-12-29 09:33:31,921 - INFO - view data - end with duration 00:00 
+2021-12-29 09:33:31,936 - INFO - Transform - end with duration 00:00 
+2021-12-29 09:33:31,945 - INFO - groupby - end with duration 00:00 
+2021-12-29 09:33:31,950 - INFO - Add delta - end with duration 00:00 
+2021-12-29 09:33:32,383 - INFO - view data - end with duration 00:00 
+2021-12-29 09:33:32,383 - INFO - view data - end flow 
+2021-12-29 09:33:32,742 - INFO - view data - end with duration 00:00 
+2021-12-29 09:33:32,927 - INFO - xml sftp - end with duration 00:00 
+2021-12-29 09:33:32,935 - INFO - json sftp - end with duration 00:00 
+2021-12-29 09:33:32,947 - INFO - xml - end with duration 00:00 
+2021-12-29 09:33:32,957 - INFO - json - end with duration 00:00 
+2021-12-29 09:33:33,004 - INFO - csv sftp - end with duration 00:00 
+2021-12-29 09:33:33,008 - INFO - csv - end with duration 00:00 
+2021-12-29 09:33:33,010 - INFO - synchro - _run 2 : 3 
+2021-12-29 09:33:33,056 - INFO - xlsx sftp - end with duration 00:00 
+2021-12-29 09:33:33,100 - INFO - xlsx - end with duration 00:00 
+2021-12-29 09:33:33,100 - INFO - synchro - _run 3 : 3 
+2021-12-29 09:33:33,100 - INFO - synchro - end with duration 00:00 
+2021-12-29 09:33:33,105 - INFO - test subflow (version: ) start with env test
+2021-12-29 09:33:33,105 - INFO - Log - super tutu 
+2021-12-29 09:33:33,105 - INFO - Log - end with duration 00:00 
+2021-12-29 09:33:33,105 - INFO - Log - end flow 
+2021-12-29 09:33:33,105 - INFO - Subflow - end with duration 00:00 
+2021-12-29 09:33:33,106 - INFO - Log - fin 
+2021-12-29 09:33:33,106 - INFO - Log - end with duration 00:00 
+2021-12-29 09:33:33,108 - CRITICAL - Code - Critical Error 
+2021-12-29 09:33:33,110 - ERROR - Error - super erreur 
+2021-12-29 09:33:33,110 - INFO - Error - end with duration 00:00 
+2021-12-29 09:33:33,338 - INFO - mail - end with duration 00:01 
+2021-12-29 09:33:33,339 - INFO - mail - end flow 
+2021-12-29 09:33:33,451 - INFO - view data - end with duration 00:00 
+2021-12-29 09:33:33,451 - INFO - view data - end flow 
+2021-12-29 09:33:33,703 - INFO - mail - end with duration 00:02 
+2021-12-29 09:33:33,703 - INFO - mail - end flow 
+2021-12-29 09:33:34,192 - INFO - mail - end with duration 00:02 
+2021-12-29 09:33:34,192 - INFO - mail - end flow 

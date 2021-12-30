@@ -1,0 +1,22 @@
+2021-12-29 15:50:56,796 - INFO - Database - end with duration 00:00 
+2021-12-29 15:50:57,401 - INFO - view data - end with duration 00:00 
+2021-12-29 15:50:57,425 - INFO - groupby - end with duration 00:00 
+2021-12-29 15:50:57,893 - INFO - view data - end with duration 00:00 
+2021-12-29 15:50:57,896 - CRITICAL - Html Jinja - Critical Error 
+2021-12-29 15:50:57,896 - CRITICAL - Database - expected token ',', got '=' 
+2021-12-29 15:50:57,897 - CRITICAL - Database - Traceback (most recent call last):
+  File "/root/projects/bambou/nodes/__init__.py", line 167, in _run
+    df = self.run(in1)
+  File "/root/projects/bambou/nodes/htmljinja/main.py", line 22, in run
+    html = withjinja(txt).render({"in1": in1})
+  File "/root/projects/bambou/nodes/__init__.py", line 35, in withjinja
+    template = Environment(block_start_string=getstring[string]["block_start_string"],
+  File "/usr/local/lib/python3.8/site-packages/jinja2/environment.py", line 1092, in from_string
+    return cls.from_code(self, self.compile(source), gs, None)
+  File "/usr/local/lib/python3.8/site-packages/jinja2/environment.py", line 757, in compile
+    self.handle_exception(source=source_hint)
+  File "/usr/local/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "<unknown>", line 3, in template
+jinja2.exceptions.TemplateSyntaxError: expected token ',', got '='
+ 

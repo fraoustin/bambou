@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block navbar %}
+<a class="siimple-menu-item" href="/projects"><div class="siimple-btn--big icon-books"></div></a>
+{% endblock %}
+
+{% block body %}
+    <div id="info" class="content-center">
+	  	<h2>{{ config['APP_NAME'] }} <bold>{{ version }}</bold></h2>
+        {{ config['APP_DESC'] }}
+        <img src="/img/bambou256.png" class="logo"></img>
+        use
+	  	<ul>
+			<li><a href="https://siimple.xyz/">siimple</a></li>
+			<li><a href="http://www.draw2d.org/draw2d/">draw2d</a></li>
+            <li><a href="https://flask.palletsprojects.com/">flask</a> ({{ flaskversion }})</li>
+            <li><a href="https://codemirror.net/">codemirror 5.64</a></li>
+			{% for blueprint in blueprints %}
+			<li><a href="">{{ blueprint.name }}</a> ({{ blueprint.version }})</li>
+			{% endfor %}
+        </ul>
+    </div>
+{% endblock %}

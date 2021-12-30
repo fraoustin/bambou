@@ -1,0 +1,31 @@
+
+@font-face{
+    font-family:icomoon;
+    src:url(/htmljinja/icomoon.woff) format('woff');
+    font-weight:400;
+    font-style:normal
+}
+
+.icon-htmljinjamax,
+.icon-htmljinja {
+    font-family: icomoon;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+.icon-htmljinja:before {
+    content: "\e9ca"
+}
+
+.icon-htmljinjamax:before {
+    content: "\e989"
+}
+
+#modal-htmljinja .CodeMirror-line{
+    padding-left: 30px;
+}

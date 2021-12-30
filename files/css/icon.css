@@ -1,0 +1,113 @@
+/* icon */
+
+@font-face{
+    font-family:icomoon;
+    src:url(./icomoon.woff) format('woff');
+    font-weight:400;
+    font-style:normal
+}
+
+.icon-user,
+.icon-out,
+.icon-del,
+.icon-save,
+.icon-info,
+.icon-close,
+.icon-search,
+.icon-download,
+.icon-add,
+.icon-param,
+.icon-shield,
+.icon-users,
+.icon-books,
+.icon-flow,
+.icon-play,
+.icon-stop,
+.icon-history,
+.icon-tags,
+.icon-upload {
+    font-family: icomoon;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+.icon-user:before {
+    content: "\e900";
+}
+
+.icon-out:before {
+    content: "\e901";
+}
+
+.icon-del:before {
+    content: "\e902";
+}
+
+.icon-save:before {
+    content: "\e962"
+}
+
+.icon-info:before {
+    content: "\e941"
+}
+
+.icon-close:before {
+    content: "\e905"
+}
+
+.icon-search:before {
+    content: "\e906"
+}
+
+.icon-download:before {
+    content: "\e907"
+}
+
+.icon-add:before {
+    content: "\e908"
+}
+
+.icon-param:before {
+    content: "\e994"
+}
+
+.icon-shield:before {
+    content: "\e9b4"
+}
+
+.icon-users:before {
+    content: "\e972"
+}
+
+.icon-books:before {
+    content: "\e920"
+}
+
+.icon-flow:before {
+    content: "\ea82"
+}
+
+.icon-play:before {
+    content: "\ea15"
+}
+
+.icon-stop:before {
+    content: "\ea17"
+}
+
+.icon-history:before {
+    content: "\e94d"
+}
+
+.icon-tags:before {
+    content: "\e936"
+}
+
+.icon-upload:before {
+    content: "\e9c6"
+}

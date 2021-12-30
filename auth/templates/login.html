@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<form action="/login"  method="POST">
+  <div class="siimple-content siimple-content--extra-small">
+    <div class="siimple--px-5 siimple--py-5">
+      <div class="siimple-h2 siimple--text-normal siimple--mb-1" align="center">
+      {{ config['APP_NAME'] }}
+      </div>
+      <div class="siimple-h4 siimple--text-normal siimple--mb-1" align="center">
+      {{ config['APP_DESC'] }}
+      </div>
+      <div class="siimple-h2 siimple--text-normal siimple--mb-1" align="center"></div>
+      <div class="siimple-field">
+        <div class="siimple-field-label">Your Email</div>
+        <input name="email" id="email" class="siimple-input siimple-input--fluid" placeholder="my@email.com">
+      </div>
+      <div class="siimple-field">
+        <div class="siimple-field-label">Your password</div>
+        <input name="password" id="password" type="password" class="siimple-input siimple-input--fluid" placeholder="password" onKeyPress="if(event.keyCode == 13) document.querySelector('form').submit();">
+      </div>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+            <div class="siimple-tip siimple-tip--{{ category }} siimple-tip--{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+      {% endwith %}
+      <div class="siimple-field">
+        <div class="siimple-btn siimple-btn--primary siimple-btn--fluid siimple--text-bold" onclick="document.querySelector('form').submit()">
+          Login
+        </div>
+        <img src="/img/bambou256.png" class="logo"></img>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

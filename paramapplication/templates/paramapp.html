@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block navbar %}
+<a class="siimple-menu-item" href="/projects"><div class="siimple-btn--big icon-books"></div></a>
+{% endblock %}
+
+{% block body %}
+<div class="siimple--float-left siimple-h2">Application Settings</div>
+{% if current_user.isadmin %}
+<div class="siimple--float-right"><a class="siimple-menu-item"><div class="siimple-btn--big icon-save"  onclick="window.document.formupdate.submit()"></div></a></div>
+{% endif %}
+<form action="/settings"  method="POST" name="formupdate">
+        <table style="width: 100%;">
+            <tr>
+                <td><div class="siimple-h3">Environment</div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">APP_NAME:</label></td>
+                <td>{{ APP_NAME }}</td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">APP_NAME:</label></td>
+                <td>{{ APP_DESC }}</td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">VERSION:</label></td>
+                <td>{{ APP_VERSION }}</td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">HOST:</label></td>
+                <td>{{ APP_HOST }}</td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">PORT:</label></td>
+                <td>{{ APP_PORT }}</td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">DEBUG:</label></td>
+                <td>{{ APP_DEBUG }}</td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">DIR:</label></td>
+                <td>{{ APP_DIR }}</td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">LOGS:</label></td>
+                <td>{{ APP_LOGS}}</td>
+            </tr>
+            <tr>
+                <td><div class="siimple-h3">Application</div></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}

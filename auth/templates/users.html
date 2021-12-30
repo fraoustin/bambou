@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<a class="siimple-menu-item" href="/projects"><div class="siimple-btn--big icon-books"></div></a>
+{% endblock %}
+
+{% block body %}
+<div class="siimple--float-left siimple-h2">Users</div>
+<div class="siimple--float-right"><a class="siimple-menu-item"><div class="siimple-btn--big icon-add"  onclick="adduser()"></div></a></div>
+<div class="search icon-search"><input id="search" type="text" class="siimple-input"></div>
+<div id = "table" class="siimple-table">
+    <div class="siimple-table-header">
+        <div class="siimple-table-row">
+            <div class="siimple-table-cell hidden">Id</div>
+            <div class="siimple-table-cell">Name</div>
+            <div class="siimple-table-cell">Email</div>
+            <div class="siimple-table-cell">Last connection</div>
+            <div class="siimple-table-cell hidden">Isadmin</div>
+            <div class="siimple-table-cell hidden">Gravatar</div>
+            <div class="siimple-table-cell hidden">Apikey</div>
+            <div class="siimple-table-cell hidden">Token</div>
+            <div class="siimple-table-cell hidden">Authorization</div>
+
+        </div>
+    </div>
+    <div class="siimple-table-body">
+        {% for user in users %}
+        <div class="siimple-table-row" id="user{{ user.id }}" onclick="viewmodal('user{{ user.id }}')">
+            <div class="siimple-table-cell hidden">{{ user.id }}</div>
+            <div class="siimple-table-cell">{{ user.name }}</div>
+            <div class="siimple-table-cell">{{ user.email }}</div>
+            <div class="siimple-table-cell">{{ user.lastconnection }}</div>
+            <div class="siimple-table-cell hidden">{{ user.isadmin }}</div>
+            <div class="siimple-table-cell hidden">{{ user.gravatar }}</div>
+            <div class="siimple-table-cell hidden">{{ user.apikey }}</div>
+            <div class="siimple-table-cell hidden">{{ user.token }}</div>
+            <div class="siimple-table-cell hidden">{{ user.group }}</div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="siimple-modal siimple-modal--medium" id="modal-user" style="display:none;">
+        <div class="siimple-modal-content">
+            <div class="siimple-modal-header">
+                <div class="siimple-modal-header-title">Utilisateurs</div>
+                <div class="siimple-modal-header-close" id="modal-close-user"></div>
+            </div>
+            <div class="siimple-modal-body">
+                <form action="" method="POST" id="formuser" name="formuser">
+                    <input class="hidden" id="backurl" name="backurl" value="/users">
+                    <table>
+                        <tr>
+                            <td><label class="siimple-label">Name: </label></td>
+                            <td><input name="name" id="name" class="siimple-input siimple-input--fluid" value="" required></td>
+                        </tr>
+                        <tr>
+                            <td><label class="siimple-label">Email: </label></td>
+                            <td><input name="email" id="email" class="siimple-input siimple-input--fluid" value="" required></td>
+                        </tr>
+                        <tr>
+                            <td><label class="siimple-label">Password: </label></td>
+                            <td><input name="password" id="password" type="password" class="siimple-input siimple-input--fluid" value="" required ></td>
+                        </tr>
+                        <tr>
+                            <td><label class="siimple-label">Is Admin: </label></td>
+                            <td><div class="siimple-switch"><input type="checkbox" id="isadmin" name="isadmin" {% if not current_user.isadmin %}disabled{% endif %}><label for="isadmin"></label></div></td>
+                        </tr>
+                        <tr>
+                            <td><label class="siimple-label">Authorization:</label></td>
+                            <td><select class="siimple-select siimple-select--fluid" id="group" name="group"> 
+                                <option value=""></option>                   
+                                {% for authorization in authorizations %}
+                                    <option value="{{ authorization.id }}">{{ authorization.name }}</option>
+                                {% endfor %}
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <td><label class="siimple-label">Gravatar: </label></td>
+                            <td><div class="siimple-switch"><input type="checkbox" id="gravatar" name="gravatar"><label for="gravatar"></label></div></td>
+                        </tr>
+                        <tr>
+                            <td><label class="siimple-label">Apikey: </label></td>
+                            <td><input name="apikey" id="apikey" class="siimple-input siimple-input--fluid" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label class="siimple-label">Token: </label></td>
+                            <td><input name="token" id="token" class="siimple-input siimple-input--fluid" value=""></td>
+                        </tr>
+                    </table>
+                </form>
+                <form action=""  method="POST" id="formuserdel" name="formuserdel">
+                    <input class="hidden" name="id" id="id" value="">
+                    <input class="hidden" id="backurl" name="backurl" value="/users">
+                </form>
+            </div>
+            <div class="siimple-modal-footer">
+                <div class="siimple-navbar">
+                    <div class="siimple-btn  siimple-btn--big siimple-btn--error icon-del" id="del_user" onclick="window.document.formuserdel.submit()"></div>
+                    <div class="siimple--float-right">
+                        <div class="siimple--float-right siimple-btn siimple-btn--big icon-save siimple-btn--primary" id="save_user" onclick="window.document.formuser.submit()"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    document.getElementById("modal-close-user").addEventListener("click", function () {
+        document.getElementById("modal-user").style.display = "none";
+    });
+    function viewmodal(id) {
+        document.getElementById("modal-user").style.display = "";
+        document.getElementById("del_user").style.display = "";
+        document.getElementById("formuser").setAttribute('action', '/user/'+document.getElementById(id).getElementsByTagName('div')[0].textContent)
+        document.getElementById("formuserdel").setAttribute('action', '/deluser/'+document.getElementById(id).getElementsByTagName('div')[0].textContent)
+        if ( "user{{ current_user.id }}" == id) {
+            document.getElementById("del_user").style.display = "none"
+        }
+        document.getElementById('name').value = document.getElementById(id).getElementsByTagName('div')[1].textContent;
+        document.getElementById('email').value = document.getElementById(id).getElementsByTagName('div')[2].textContent;
+        document.getElementById('apikey').style.display = "";
+        document.getElementById('apikey').value = document.getElementById(id).getElementsByTagName('div')[6].textContent;
+        document.getElementById('token').style.display = "";
+        document.getElementById('token').value = document.getElementById(id).getElementsByTagName('div')[7].textContent;
+        if (document.getElementById(id).getElementsByTagName('div')[4].textContent == 'True') {
+            document.getElementById('isadmin').checked = true;
+        } else {
+            document.getElementById('isadmin').checked = false;
+        };
+        if (document.getElementById(id).getElementsByTagName('div')[5].textContent == 'True') {
+            document.getElementById('gravatar').checked = true;
+        } else {
+            document.getElementById('gravatar').checked = false;
+        };
+        document.getElementById('group').value = document.getElementById(id).getElementsByTagName('div')[8].textContent;
+    };
+    function adduser(){
+        document.getElementById("modal-user").style.display = "";
+        document.getElementById("formuser").setAttribute('action', '/user');
+        document.getElementById("del_user").style.display = "none";
+        document.getElementById('name').value = "";
+        document.getElementById('email').value = "";
+        document.getElementById('apikey').style.display = "none";
+        document.getElementById('apikey').value = "";
+        document.getElementById('token').style.display = "none";
+        document.getElementById('token').value = "";
+        document.getElementById('isadmin').checked = false;
+        document.getElementById('gravatar').checked = false;
+        document.getElementById('group').value = "";
+        document.getElementById('name').focus();
+    }
+</script>
+{% endblock %}

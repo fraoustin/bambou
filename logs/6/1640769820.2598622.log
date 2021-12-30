@@ -1,0 +1,66 @@
+2021-12-29 09:23:40,905 - INFO - schooltwo - end with duration 00:00 
+2021-12-29 09:23:40,912 - INFO - schoolone - end with duration 00:00 
+2021-12-29 09:23:40,914 - INFO - concat - end with duration 00:00 
+2021-12-29 09:23:40,924 - INFO - schoolsex - end with duration 00:00 
+2021-12-29 09:23:41,343 - INFO - all note - end with duration 00:00 
+2021-12-29 09:23:41,345 - INFO - view data - end with duration 00:00 
+2021-12-29 09:23:41,348 - INFO - join - end with duration 00:00 
+2021-12-29 09:23:41,363 - INFO - For-each - end with duration 00:00 
+2021-12-29 09:23:41,561 - CRITICAL - mail - Critical Error 
+2021-12-29 09:23:41,561 - CRITICAL - schoolone - [Errno 2] No such file or directory: 'README.md' 
+2021-12-29 09:23:41,562 - CRITICAL - schoolone - Traceback (most recent call last):
+  File "/root/projects/bambou/nodes/__init__.py", line 167, in _run
+    df = self.run(in1)
+  File "/root/projects/bambou/nodes/mail/main.py", line 62, in run
+    with open(path, 'rb') as fp:
+FileNotFoundError: [Errno 2] No such file or directory: 'README.md'
+ 
+2021-12-29 09:23:41,564 - CRITICAL - mail - Critical Error 
+2021-12-29 09:23:41,564 - CRITICAL - schoolone - [Errno 2] No such file or directory: 'README.md' 
+2021-12-29 09:23:41,564 - CRITICAL - schoolone - Traceback (most recent call last):
+  File "/root/projects/bambou/nodes/__init__.py", line 167, in _run
+    df = self.run(in1)
+  File "/root/projects/bambou/nodes/mail/main.py", line 62, in run
+    with open(path, 'rb') as fp:
+FileNotFoundError: [Errno 2] No such file or directory: 'README.md'
+ 
+2021-12-29 09:23:41,566 - CRITICAL - mail - Critical Error 
+2021-12-29 09:23:41,566 - CRITICAL - schoolone - [Errno 2] No such file or directory: 'README.md' 
+2021-12-29 09:23:41,567 - CRITICAL - schoolone - Traceback (most recent call last):
+  File "/root/projects/bambou/nodes/__init__.py", line 167, in _run
+    df = self.run(in1)
+  File "/root/projects/bambou/nodes/mail/main.py", line 62, in run
+    with open(path, 'rb') as fp:
+FileNotFoundError: [Errno 2] No such file or directory: 'README.md'
+ 
+2021-12-29 09:23:41,937 - INFO - view data - end with duration 00:00 
+2021-12-29 09:23:41,953 - INFO - Transform - end with duration 00:00 
+2021-12-29 09:23:41,963 - INFO - groupby - end with duration 00:00 
+2021-12-29 09:23:41,967 - INFO - Add delta - end with duration 00:00 
+2021-12-29 09:23:42,404 - INFO - view data - end with duration 00:00 
+2021-12-29 09:23:42,404 - INFO - view data - end flow 
+2021-12-29 09:23:42,701 - INFO - view data - end with duration 00:00 
+2021-12-29 09:23:42,869 - INFO - csv sftp - end with duration 00:00 
+2021-12-29 09:23:42,873 - INFO - csv - end with duration 00:00 
+2021-12-29 09:23:42,937 - INFO - xml sftp - end with duration 00:00 
+2021-12-29 09:23:42,940 - INFO - json sftp - end with duration 00:00 
+2021-12-29 09:23:42,945 - INFO - json - end with duration 00:00 
+2021-12-29 09:23:42,949 - INFO - synchro - _run 1 : 3 
+2021-12-29 09:23:42,952 - INFO - xml - end with duration 00:00 
+2021-12-29 09:23:42,952 - INFO - synchro - _run 2 : 3 
+2021-12-29 09:23:43,045 - INFO - xlsx sftp - end with duration 00:00 
+2021-12-29 09:23:43,085 - INFO - xlsx - end with duration 00:00 
+2021-12-29 09:23:43,085 - INFO - synchro - _run 3 : 3 
+2021-12-29 09:23:43,085 - INFO - synchro - end with duration 00:00 
+2021-12-29 09:23:43,090 - INFO - test subflow (version: ) start with env test
+2021-12-29 09:23:43,091 - INFO - Log - super tutu 
+2021-12-29 09:23:43,091 - INFO - Log - end with duration 00:00 
+2021-12-29 09:23:43,091 - INFO - Log - end flow 
+2021-12-29 09:23:43,091 - INFO - Subflow - end with duration 00:00 
+2021-12-29 09:23:43,092 - INFO - Log - fin 
+2021-12-29 09:23:43,092 - INFO - Log - end with duration 00:00 
+2021-12-29 09:23:43,093 - CRITICAL - Code - Critical Error 
+2021-12-29 09:23:43,095 - ERROR - Error - super erreur 
+2021-12-29 09:23:43,095 - INFO - Error - end with duration 00:00 
+2021-12-29 09:23:43,454 - INFO - view data - end with duration 00:00 
+2021-12-29 09:23:43,454 - INFO - view data - end flow 

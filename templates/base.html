@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>{{ config['APP_NAME'] }}</title>
+        <link rel="shortcut icon" href="/img/bambou.ico" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+        <!-- siimple -->
+        <link rel="stylesheet" href="/siimple/siimple.min.css">
+        <!-- flow -->
+        <link rel="stylesheet" href="/css/flow.css">
+        <link rel="stylesheet" href="/css/icon.css">
+        {% block addhead %}{% endblock %}
+        
+    </head>
+    <body>
+        {% if current_user.is_authenticated %}
+        <div id="menu" class="siimple-menu siimple--float-left">
+            <a class="siimple-menu-item" href="/" id="btn-home"><div class="siimple-btn--big icon-flow" title="flows"></div></a>
+            {% block navbar %}{% endblock %}
+            <div id="menu-bottom">
+            {% if current_user.isadmin %}
+                {% block navbarbottom %}
+                <a class="siimple-menu-item" href="/authorizations"><div class="siimple-btn--big icon-shield" title="authorizations"></div></a>
+                <a class="siimple-menu-item" href="/users"><div class="siimple-btn--big icon-users" title="users"></div></a>
+                <a class="siimple-menu-item" href="/settings"><div class="siimple-btn--big icon-param"  title="settings"></div></a>
+                <a class="siimple-menu-item" href="/info"><div class="siimple-btn--big icon-info" title="info"></div></a>
+                {% endblock %}
+            {% endif %}
+                <a class="siimple-menu-item" href="/currentuser" class="gravatar">
+                    {% if current_user.gravatar %}
+                        <div class="siimple-btn--big" title="me"><img src='{{ current_user.urlgravatar }}?size=24'/></div>
+                    {% else %}
+                        <div class="siimple-btn--big icon-user" title="me"></div>
+                    {% endif %}
+                </a>
+                <a class="siimple-menu-item" href="/logout"><div class="siimple-btn--big icon-out" title="logout"></div></a>
+            </div>
+        </div>
+        {% endif %}
+        <div id="main">
+            {% if current_user.is_authenticated %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="general siimple-tip siimple-tip--{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% endif %}
+            <div id="content" class="siimple-content--fluid">
+            {% block body %}{% endblock %}
+            </div>
+        </div>
+        <script src="/javascripts/flow.js"></script>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+{% set backurl={None:'/'}.get(backurl, backurl) %}
+{% extends 'base.html' %}
+{% block navbar %}
+<a class="siimple-menu-item" href="/projects"><div class="siimple-btn--big icon-books"></div></a>
+{% endblock %}
+
+{% block body %}
+<div class="siimple--float-left siimple-h2">User {{ user.name }}</div>
+<div class="siimple--float-right"><a class="siimple-menu-item"><div class="siimple-btn--big icon-save"  onclick="window.document.formuser.submit()"></div></a></div>
+
+    {% if user.id != None %}
+    <form action="/user/{{ user.id }}"  method="POST" name="formuser">
+    {% else %}
+    <form action="/user"  method="POST" name="formuser">
+    {% endif %}
+        <input class="hidden" id="backurl" name="backurl" value="{{ backurl }}">
+        <table style="width:100%">
+            <tr>
+                <td><label class="siimple-label">Name: </label></td>
+                <td><input name="name" id="name" class="siimple-input siimple-input--fluid" value="{{ user.name }}" required></td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">Email: </label></td>
+                <td><input name="email" id="email" class="siimple-input siimple-input--fluid" value="{{ user.email }}" required></td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">Password: </label></td>
+                <td><input name="password" id="password" type="password" class="siimple-input siimple-input--fluid" value="" required ></td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">Is Admin: </label></td>
+                <td><div class="siimple-switch"><input type="checkbox" id="isadmin" name="isadmin" {% if user.isadmin %}checked{% endif %} {% if not current_user.isadmin %}disabled{% endif %}><label for="isadmin"></label></div></td>
+            </tr>
+            <tr class="hidden">
+                <td><label class="siimple-label">Authorization: {{ user.group }}</label></td>                
+                <td><input name="group" id="group" class="siimple-input siimple-input--fluid" value="{{ user.group }}" readonly></td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">Gravatar: </label></td>
+                <td><div class="siimple-switch"><input type="checkbox" id="gravatar" name="gravatar" {% if user.gravatar %}checked{% endif %}><label for="gravatar"></label></div></td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">Apikey: </label></td>
+                <td><input name="apikey" id="apikey" class="siimple-input siimple-input--fluid" value="{{ user.apikey }}" readonly></td>
+            </tr>
+            <tr>
+                <td><label class="siimple-label">Token: </label></td>
+                <td><input name="token" id="token" class="siimple-input siimple-input--fluid" value="{{ user.token }}" readonly></td>
+            </tr>
+        </table>
+    </form>
+    <form action="/deluser/{{ user.id }}"  method="POST" name="formuserdel">
+        <input class="hidden" name="backurl" value="{{ backurl }}">
+    </form>
+{% endblock %}
