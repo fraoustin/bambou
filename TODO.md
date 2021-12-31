@@ -11,6 +11,8 @@ curl -X POST -d "version=0.0.1" https://test.fraoustin.fr/flow/4/run?api=ea758b5
 
 - voir rename col et index ?
 
+- faire un flux d'exemple complet
+
 - voir pour générer des dashboard complet avec des liens grace au for-each
 
 - db location webdav sharepoint googledrive

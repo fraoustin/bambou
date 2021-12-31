@@ -1,0 +1,47 @@
+{
+  "flow": {
+    "id": 3,
+    "name": "test subflow",
+    "resume": ""
+  },
+  "map": [
+    {
+      "id": "68e7cc44-2f09-1359-69a9-9e1f18ea65ba",
+      "type": "log",
+      "text": "Log",
+      "x": 99,
+      "y": 217,
+      "inputports": [
+        {
+          "id": "abe3a76e-3e22-4e72-e82f-2ca2f7f47de4",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "23a62847-a450-4c68-294e-b56fc6af71ad",
+          "name": "out1",
+          "target": []
+        },
+        {
+          "idport": "2bb0a870-67be-ac7d-2136-684fbf2cb016",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "dest": "log",
+        "text": "<< text1 >> << text2 >>",
+        "level": "info",
+        "graylogport": "",
+        "graylogip": ""
+      }
+    }
+  ],
+  "env": {
+    "test": {
+      "text1": "super",
+      "text2": "coucou"
+    }
+  }
+}

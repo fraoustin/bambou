@@ -1,0 +1,1067 @@
+{
+  "flow": {
+    "id": 6,
+    "name": "flow valid",
+    "resume": ""
+  },
+  "map": [
+    {
+      "id": "31be4a7d-6505-c698-e812-777b483276a0",
+      "type": "db",
+      "text": "classTwo",
+      "x": 56,
+      "y": 246,
+      "inputports": [
+        {
+          "id": "f1414c49-0431-8c50-8bb0-b720702de0f3",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "18929906-48f6-5459-4260-3f5e390e81f5",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in2",
+              "idport": "da47a706-2a3b-0baa-28d2-1cb5987578f5",
+              "id": "88e25053-dccb-a4cb-762f-19ae7a8e15c4"
+            }
+          ]
+        },
+        {
+          "idport": "19826c94-dbf1-e0ea-e8d7-d63ec0850d29",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "user": "<< user >>",
+        "password": "<< password >>",
+        "type": "csv",
+        "url": "/your/path",
+        "server": "<< server >>",
+        "port": "<< port >>",
+        "database": "<< database >>",
+        "optioncnx": "",
+        "action": "read",
+        "table": "schooltwo",
+        "query": "",
+        "ifexists": "append",
+        "method": "multi",
+        "pathfile": "<< classTwoPath >>",
+        "delimiter": ";",
+        "orient": "",
+        "sheet": "undefined",
+        "dropindex": "false",
+        "loc": "local",
+        "locserver": "undefined",
+        "locuser": "undefined",
+        "locpassword": "undefined"
+      }
+    },
+    {
+      "id": "88e25053-dccb-a4cb-762f-19ae7a8e15c4",
+      "type": "link",
+      "text": "concat",
+      "x": 174,
+      "y": 176,
+      "inputports": [
+        {
+          "id": "9f90a9e9-a8c9-38a8-cf0b-0625d73a504d",
+          "name": "in1"
+        },
+        {
+          "id": "da47a706-2a3b-0baa-28d2-1cb5987578f5",
+          "name": "in2"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "32598f55-64e9-cac7-7601-e35c955c5b4f",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "fec892aa-7845-0b94-d642-a3072ef65511",
+              "id": "056b9fbb-8775-598f-2dcb-5f016ed30964"
+            }
+          ]
+        },
+        {
+          "idport": "b2bb2cc0-3083-5212-a75c-e6af6ca3fc25",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "type": "concat",
+        "axis": "0",
+        "join": "inner",
+        "how": "inner",
+        "left_on": "",
+        "left_suffix": "_l",
+        "right_on": "",
+        "right_suffix": "_r",
+        "indicator": "False",
+        "validate": ""
+      }
+    },
+    {
+      "id": "056b9fbb-8775-598f-2dcb-5f016ed30964",
+      "type": "data",
+      "text": "all note",
+      "x": 283,
+      "y": 168,
+      "inputports": [
+        {
+          "id": "fec892aa-7845-0b94-d642-a3072ef65511",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "7f8e0537-dbc4-0fe2-e2d5-f84a349312f3",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "17b967d5-6831-dbb8-8b88-facf1912e270",
+              "id": "6ee18035-17a9-6dbb-8fa0-430fe6a85dd9"
+            }
+          ]
+        },
+        {
+          "idport": "8a292dbe-308d-447c-f7f0-6870e29cf6eb",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "idflow": "<< _id >>",
+        "uid": "kxg6k93e",
+        "limit": "",
+        "dropindex": "true"
+      }
+    },
+    {
+      "id": "6ee18035-17a9-6dbb-8fa0-430fe6a85dd9",
+      "type": "link",
+      "text": "join",
+      "x": 376,
+      "y": 271,
+      "inputports": [
+        {
+          "id": "17b967d5-6831-dbb8-8b88-facf1912e270",
+          "name": "in1"
+        },
+        {
+          "id": "38f413e6-d881-0756-b7dc-a8735edc6902",
+          "name": "in2"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "159d2268-bfe4-b8f2-81c4-20f552335367",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "7a6565c4-01e8-ce2b-3057-8ea8bf578913",
+              "id": "ee900f4e-e3e9-15d7-fc99-adf1f93b2b8a"
+            }
+          ]
+        },
+        {
+          "idport": "c12a30c4-4a8f-5461-255a-c06b7a3844a9",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "type": "join",
+        "axis": "0",
+        "join": "inner",
+        "how": "left",
+        "left_on": "name",
+        "left_suffix": "_l",
+        "right_on": "name",
+        "right_suffix": "_r",
+        "indicator": "False",
+        "validate": "many_to_many"
+      }
+    },
+    {
+      "id": "57b0612c-d014-7322-3d28-fb3db8a0ecfd",
+      "type": "db",
+      "text": "schoolsex",
+      "x": 59,
+      "y": 457,
+      "inputports": [
+        {
+          "id": "640f5f3d-c55e-d4be-7a92-c42a80f5c97d",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "14243c3a-9fcd-9e37-8474-95259beed56a",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in2",
+              "idport": "38f413e6-d881-0756-b7dc-a8735edc6902",
+              "id": "6ee18035-17a9-6dbb-8fa0-430fe6a85dd9"
+            },
+            {
+              "name": "in2",
+              "idport": "38f413e6-d881-0756-b7dc-a8735edc6902",
+              "id": "6ee18035-17a9-6dbb-8fa0-430fe6a85dd9"
+            },
+            {
+              "name": "in2",
+              "idport": "38f413e6-d881-0756-b7dc-a8735edc6902",
+              "id": "6ee18035-17a9-6dbb-8fa0-430fe6a85dd9"
+            },
+            {
+              "name": "in2",
+              "idport": "38f413e6-d881-0756-b7dc-a8735edc6902",
+              "id": "6ee18035-17a9-6dbb-8fa0-430fe6a85dd9"
+            }
+          ]
+        },
+        {
+          "idport": "e5d5309f-79df-f16f-6f9f-70a8ac100ddf",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "user": "<< user >>",
+        "password": "<< password >>",
+        "type": "csv",
+        "url": "/your/path",
+        "server": "<< server >>",
+        "port": "<< port >>",
+        "database": "<< database >>",
+        "optioncnx": "",
+        "action": "read",
+        "table": "schoolsex",
+        "query": "",
+        "ifexists": "append",
+        "method": "multi",
+        "pathfile": "<< schoolSexPath >>",
+        "delimiter": ";",
+        "orient": "",
+        "sheet": "undefined",
+        "dropindex": "false",
+        "loc": "local",
+        "locserver": "undefined",
+        "locuser": "undefined",
+        "locpassword": "undefined"
+      }
+    },
+    {
+      "id": "4485ac85-3df0-dbf6-26e3-51ecd5c64cb7",
+      "type": "transform",
+      "text": "Transform",
+      "x": 586,
+      "y": 262,
+      "inputports": [
+        {
+          "id": "6cf6b6f0-d10e-b7e0-c4a2-702417e24c4d",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "ce0e6f4f-9b0a-5cb0-c4e7-a8931ff42b90",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "a38a446f-396d-9ac6-280c-f1ce01923f03",
+              "id": "a4e8b2a5-238a-562a-776f-d5f318944dea"
+            },
+            {
+              "name": "in1",
+              "idport": "25e0225a-0512-6693-86e4-72f1b904a290",
+              "id": "c9dc2dd3-42af-2d0b-35eb-3fae556112ee"
+            }
+          ]
+        },
+        {
+          "idport": "f2a775a1-592f-b1dd-3b45-ab1b48b2c2d7",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "steps": [
+          {
+            "action": "dropcol",
+            "param1": "matiere",
+            "param2": "",
+            "param3": ""
+          },
+          {
+            "action": "rename",
+            "param1": "sex",
+            "param2": "sexe",
+            "param3": ""
+          },
+          {
+            "action": "query",
+            "param1": "sexe is not null",
+            "param2": "",
+            "param3": ""
+          },
+          {
+            "action": "sort",
+            "param1": "sexe, name",
+            "param2": "",
+            "param3": ""
+          },
+          {
+            "action": "type",
+            "param1": "note",
+            "param2": "int",
+            "param3": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "c9dc2dd3-42af-2d0b-35eb-3fae556112ee",
+      "type": "data",
+      "text": "view data",
+      "x": 703,
+      "y": 183,
+      "inputports": [
+        {
+          "id": "25e0225a-0512-6693-86e4-72f1b904a290",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "86feebc0-c80a-a941-651a-978331a5d46c",
+          "name": "out1",
+          "target": []
+        },
+        {
+          "idport": "3684b227-378c-0ccf-6e42-10501963ad5e",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "idflow": "<< _id >>",
+        "uid": "kxh8tug1",
+        "limit": "",
+        "dropindex": "true"
+      }
+    },
+    {
+      "id": "a4e8b2a5-238a-562a-776f-d5f318944dea",
+      "type": "groupby",
+      "text": "groupby",
+      "x": 703,
+      "y": 365,
+      "inputports": [
+        {
+          "id": "a38a446f-396d-9ac6-280c-f1ce01923f03",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "ca681804-f2ef-2e30-0884-c7555f41174b",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "3ed9d102-8f5a-be3d-f43d-48fa8ca77686",
+              "id": "115d6345-9bc6-d5a1-bbf3-c0687e888172"
+            }
+          ]
+        },
+        {
+          "idport": "7b97a741-608a-c890-2549-f735d4664869",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "groupbys": [
+          "sexe",
+          "name"
+        ],
+        "aggs": [
+          {
+            "mode": "mean",
+            "col": "note"
+          },
+          {
+            "mode": "max",
+            "col": "note"
+          },
+          {
+            "mode": "min",
+            "col": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a98f416d-4775-ec87-4eb0-766a2039759f",
+      "type": "data",
+      "text": "view data",
+      "x": 879,
+      "y": 348,
+      "inputports": [
+        {
+          "id": "cadfb2d5-0e80-72f1-1734-a2816fbea23b",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "15b3f20f-d669-3804-99a2-7ae7aed2db4e",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "9a58b1ee-90b6-fba0-051d-a01bb54c89aa",
+              "id": "ee708fda-dc31-ee94-600e-b65e4cf25e1d"
+            },
+            {
+              "name": "in1",
+              "idport": "337874b3-886d-f60d-2e30-28d2384017ba",
+              "id": "aef76aa9-0d83-645f-3bff-a95dca023062"
+            },
+            {
+              "name": "in1",
+              "idport": "fcbff743-4349-46cc-cc4d-cd636c900f6d",
+              "id": "ed80f73d-2a0d-5225-b9af-120e148f6532"
+            },
+            {
+              "name": "in1",
+              "idport": "4c37c090-aee8-1249-46e4-2630c2e108b3",
+              "id": "caa50693-3ff6-bf2a-c8c9-707cba7dce55"
+            }
+          ]
+        },
+        {
+          "idport": "55ff6895-9465-db37-9d24-30314eae4646",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "idflow": "<< _id >>",
+        "uid": "kxhefvdx",
+        "limit": "",
+        "dropindex": "false"
+      }
+    },
+    {
+      "id": "115d6345-9bc6-d5a1-bbf3-c0687e888172",
+      "type": "transform",
+      "text": "Add delta",
+      "x": 794.2222290039062,
+      "y": 357,
+      "inputports": [
+        {
+          "id": "3ed9d102-8f5a-be3d-f43d-48fa8ca77686",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "0ab5045a-f2ed-17f1-7210-75824b041e3b",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "cadfb2d5-0e80-72f1-1734-a2816fbea23b",
+              "id": "a98f416d-4775-ec87-4eb0-766a2039759f"
+            }
+          ]
+        },
+        {
+          "idport": "ea5136f0-00ae-191c-5301-04bfa108725b",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "steps": [
+          {
+            "action": "rename",
+            "param1": "max(note)",
+            "param2": "max_note",
+            "param3": ""
+          },
+          {
+            "action": "rename",
+            "param1": "min(note)",
+            "param2": "min_note",
+            "param3": ""
+          },
+          {
+            "action": "addcol",
+            "param1": "delta",
+            "param2": "max_note-min_note",
+            "param3": ""
+          },
+          {
+            "action": "rename",
+            "param1": "mean(note)",
+            "param2": "mean_note",
+            "param3": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "ee900f4e-e3e9-15d7-fc99-adf1f93b2b8a",
+      "type": "data",
+      "text": "view data",
+      "x": 477.3333435058594,
+      "y": 265,
+      "inputports": [
+        {
+          "id": "7a6565c4-01e8-ce2b-3057-8ea8bf578913",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "4ea48492-7ea5-2c26-8eb2-2351265cfa91",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "6cf6b6f0-d10e-b7e0-c4a2-702417e24c4d",
+              "id": "4485ac85-3df0-dbf6-26e3-51ecd5c64cb7"
+            }
+          ]
+        },
+        {
+          "idport": "48ba7bab-4af2-694d-1d98-5b42d793c6ae",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "idflow": "<< _id >>",
+        "uid": "kxko0ejd",
+        "limit": "",
+        "dropindex": "false"
+      }
+    },
+    {
+      "id": "ee708fda-dc31-ee94-600e-b65e4cf25e1d",
+      "type": "db",
+      "text": "csv",
+      "x": 1067,
+      "y": 260,
+      "inputports": [
+        {
+          "id": "9a58b1ee-90b6-fba0-051d-a01bb54c89aa",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "0ba6de13-f43f-82cb-3ecc-ac174f5f2ebe",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "54cddd83-a96b-32d7-dd7a-72d6f66ca831",
+              "id": "96c0dacd-d79b-6241-3cb3-e4a3e76be35e"
+            }
+          ]
+        },
+        {
+          "idport": "db6f2571-fe18-6f47-0e04-8b8ce962d671",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "user": "",
+        "password": "",
+        "type": "csv",
+        "url": "/your/path",
+        "server": "",
+        "port": "",
+        "database": "",
+        "optioncnx": "",
+        "action": "write",
+        "table": "",
+        "query": "",
+        "ifexists": "append",
+        "method": "multi",
+        "pathfile": "test/test.csv",
+        "delimiter": ";",
+        "orient": "index",
+        "sheet": "Sheet1",
+        "dropindex": "false",
+        "loc": "local",
+        "locserver": "",
+        "locuser": "",
+        "locpassword": ""
+      }
+    },
+    {
+      "id": "aef76aa9-0d83-645f-3bff-a95dca023062",
+      "type": "db",
+      "text": "xlsx",
+      "x": 1078,
+      "y": 371,
+      "inputports": [
+        {
+          "id": "337874b3-886d-f60d-2e30-28d2384017ba",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "fba87dc6-1bb0-4b2c-9a1e-99e015c97354",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in2",
+              "idport": "371f62ae-214e-0c61-b80a-cc34ff34b659",
+              "id": "96c0dacd-d79b-6241-3cb3-e4a3e76be35e"
+            }
+          ]
+        },
+        {
+          "idport": "7489411f-b58d-e624-e6a3-f499e25af2ed",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "user": "",
+        "password": "",
+        "type": "xlsx",
+        "url": "/your/path",
+        "server": "",
+        "port": "",
+        "database": "",
+        "optioncnx": "",
+        "action": "write",
+        "table": "",
+        "query": "",
+        "ifexists": "append",
+        "method": "multi",
+        "pathfile": "test/test.xlsx",
+        "delimiter": ";",
+        "orient": "index",
+        "sheet": "Sheet1",
+        "dropindex": "false",
+        "loc": "local",
+        "locserver": "",
+        "locuser": "",
+        "locpassword": ""
+      }
+    },
+    {
+      "id": "ed80f73d-2a0d-5225-b9af-120e148f6532",
+      "type": "db",
+      "text": "json",
+      "x": 1083,
+      "y": 482,
+      "inputports": [
+        {
+          "id": "fcbff743-4349-46cc-cc4d-cd636c900f6d",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "804a900a-ddc7-e0db-5db3-c708b9b37202",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in2",
+              "idport": "371f62ae-214e-0c61-b80a-cc34ff34b659",
+              "id": "96c0dacd-d79b-6241-3cb3-e4a3e76be35e"
+            }
+          ]
+        },
+        {
+          "idport": "678617b2-0f02-6de4-1b7d-86ce9e46af25",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "user": "",
+        "password": "",
+        "type": "json",
+        "url": "/your/path",
+        "server": "",
+        "port": "",
+        "database": "",
+        "optioncnx": "",
+        "action": "write",
+        "table": "",
+        "query": "",
+        "ifexists": "append",
+        "method": "multi",
+        "pathfile": "test/test.json",
+        "delimiter": ";",
+        "orient": "index",
+        "sheet": "Sheet1",
+        "dropindex": "false",
+        "loc": "local",
+        "locserver": "",
+        "locuser": "",
+        "locpassword": ""
+      }
+    },
+    {
+      "id": "caa50693-3ff6-bf2a-c8c9-707cba7dce55",
+      "type": "db",
+      "text": "xml",
+      "x": 1079,
+      "y": 587,
+      "inputports": [
+        {
+          "id": "4c37c090-aee8-1249-46e4-2630c2e108b3",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "bc5b4a2f-10af-0767-d9ad-7ffec6d6d828",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in2",
+              "idport": "371f62ae-214e-0c61-b80a-cc34ff34b659",
+              "id": "96c0dacd-d79b-6241-3cb3-e4a3e76be35e"
+            }
+          ]
+        },
+        {
+          "idport": "fde97e86-2e95-a9cf-a5e9-03e939c0f59d",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "user": "",
+        "password": "",
+        "type": "xml",
+        "url": "/your/path",
+        "server": "",
+        "port": "",
+        "database": "",
+        "optioncnx": "",
+        "action": "write",
+        "table": "",
+        "query": "",
+        "ifexists": "append",
+        "method": "multi",
+        "pathfile": "test/test.xml",
+        "delimiter": ";",
+        "orient": "index",
+        "sheet": "Sheet1",
+        "dropindex": "false",
+        "loc": "local",
+        "locserver": "",
+        "locuser": "",
+        "locpassword": ""
+      }
+    },
+    {
+      "id": "96c0dacd-d79b-6241-3cb3-e4a3e76be35e",
+      "type": "synchro",
+      "text": "synchro",
+      "x": 1263,
+      "y": 263,
+      "inputports": [
+        {
+          "id": "54cddd83-a96b-32d7-dd7a-72d6f66ca831",
+          "name": "in1"
+        },
+        {
+          "id": "371f62ae-214e-0c61-b80a-cc34ff34b659",
+          "name": "in2"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "1c00135c-6287-9d7c-cdee-5bf908d7dd68",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "c6a92855-8790-fa2c-036c-c4c9a45de798",
+              "id": "2b706ac0-d86e-2229-18b3-a645f31ab08c"
+            }
+          ]
+        },
+        {
+          "idport": "3e42c368-4d87-dbf9-d32b-85ba1bddcca8",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "39884703-2650-8bce-1d3e-5bc3e7ef6741",
+      "type": "log",
+      "text": "Log",
+      "x": 1457,
+      "y": 248,
+      "inputports": [
+        {
+          "id": "400b9074-6559-0ac3-a05d-6fc2306c8108",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "8e4f9c61-f5d9-28be-1baa-5cefba60478e",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "850003fe-6f41-6eb2-b6cd-e0352b3b083e",
+              "id": "545166ea-e173-6347-477a-8f264d391038"
+            }
+          ]
+        },
+        {
+          "idport": "f5ccfaac-6435-8f39-b13d-e09f4deeb8f9",
+          "name": "error",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "ac81245c-5835-1602-ab41-dea2e45cd619",
+              "id": "0c81a54b-0f2f-3fa5-ae58-6f8dde330ad3"
+            }
+          ]
+        }
+      ],
+      "parameters": {
+        "dest": "log",
+        "text": "fin",
+        "level": "info",
+        "graylogport": "",
+        "graylogip": ""
+      }
+    },
+    {
+      "id": "2b706ac0-d86e-2229-18b3-a645f31ab08c",
+      "type": "subflow",
+      "text": "Subflow",
+      "x": 1359,
+      "y": 256,
+      "inputports": [
+        {
+          "id": "c6a92855-8790-fa2c-036c-c4c9a45de798",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "57c2556c-b2f9-0b8a-52c2-21f51eddd0d9",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "400b9074-6559-0ac3-a05d-6fc2306c8108",
+              "id": "39884703-2650-8bce-1d3e-5bc3e7ef6741"
+            }
+          ]
+        },
+        {
+          "idport": "452c914f-2d34-cc9f-e4c9-bf0e65a74576",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "flow": "3",
+        "env": "test",
+        "level": "inherited",
+        "version": "",
+        "newenvs": [
+          {
+            "name": "text2",
+            "value": "tutu"
+          }
+        ]
+      }
+    },
+    {
+      "id": "545166ea-e173-6347-477a-8f264d391038",
+      "type": "code",
+      "text": "Code",
+      "x": 1547,
+      "y": 240,
+      "inputports": [
+        {
+          "id": "850003fe-6f41-6eb2-b6cd-e0352b3b083e",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "15a31668-a596-baf0-3bf6-f0904746e150",
+          "name": "out1",
+          "target": []
+        },
+        {
+          "idport": "1336d3f2-415f-c010-e39a-c48a0ee246b1",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "code": "a=0\nprint(10/a)\nreturn out"
+      }
+    },
+    {
+      "id": "0c81a54b-0f2f-3fa5-ae58-6f8dde330ad3",
+      "type": "log",
+      "text": "Error",
+      "x": 1551,
+      "y": 333,
+      "inputports": [
+        {
+          "id": "ac81245c-5835-1602-ab41-dea2e45cd619",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "401f10cd-932a-223a-33f7-db6d71ba77d1",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "d5396052-fea0-2376-7fee-5dff30d9de8c",
+              "id": "add00d57-f875-aad5-ef6a-a7203974ba55"
+            }
+          ]
+        },
+        {
+          "idport": "b7ffa1e0-a445-08d5-8c35-0b20d991421d",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "dest": "log",
+        "text": "super erreur",
+        "level": "error",
+        "graylogport": "",
+        "graylogip": ""
+      }
+    },
+    {
+      "id": "add00d57-f875-aad5-ef6a-a7203974ba55",
+      "type": "data",
+      "text": "view data",
+      "x": 1637,
+      "y": 325,
+      "inputports": [
+        {
+          "id": "d5396052-fea0-2376-7fee-5dff30d9de8c",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "f05c129f-e557-5914-f2bf-7451a379b1de",
+          "name": "out1",
+          "target": []
+        },
+        {
+          "idport": "61c48709-561f-5ce3-8706-2dd744ebdf67",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "idflow": "<< _id >>",
+        "uid": "kxpynjoh",
+        "limit": "",
+        "dropindex": "false"
+      }
+    },
+    {
+      "id": "58d5c885-3e10-3335-691e-47703d0d16b4",
+      "type": "db",
+      "text": "classOne",
+      "x": 47,
+      "y": 124,
+      "inputports": [
+        {
+          "id": "94772154-25d0-8a5d-a6b5-1f7eab4cd3cc",
+          "name": "in1"
+        }
+      ],
+      "outputports": [
+        {
+          "idport": "599a5024-fcd2-fe5b-f700-0118f58a4a75",
+          "name": "out1",
+          "target": [
+            {
+              "name": "in1",
+              "idport": "9f90a9e9-a8c9-38a8-cf0b-0625d73a504d",
+              "id": "88e25053-dccb-a4cb-762f-19ae7a8e15c4"
+            }
+          ]
+        },
+        {
+          "idport": "a890a878-35df-5bd4-edb7-a59e28ab77bb",
+          "name": "error",
+          "target": []
+        }
+      ],
+      "parameters": {
+        "user": "<< user >>",
+        "password": "<< password >>",
+        "type": "csv",
+        "url": "/your/path",
+        "server": "<< server >>",
+        "port": "<< port >>",
+        "database": "<< database >>",
+        "optioncnx": "",
+        "action": "read",
+        "table": "schooltwo",
+        "query": "",
+        "ifexists": "append",
+        "method": "multi",
+        "pathfile": "<< classOnePath >>",
+        "delimiter": ";",
+        "orient": "",
+        "sheet": "undefined",
+        "dropindex": "false",
+        "loc": "local",
+        "locserver": "undefined",
+        "locuser": "undefined",
+        "locpassword": "undefined"
+      }
+    }
+  ],
+  "env": {
+    "prod": {
+      "classOnePath": "./test/classOne.csv",
+      "classTwoPath": "./test/classTwo.csv",
+      "schoolSexPath": "./test/schoolSex.csv"
+    }
+  }
+}
