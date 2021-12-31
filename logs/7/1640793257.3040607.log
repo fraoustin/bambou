@@ -1,6 +1,0 @@
-2021-12-29 15:54:17,477 - INFO - Database - end with duration 00:00 
-2021-12-29 15:54:17,853 - INFO - view data - end with duration 00:00 
-2021-12-29 15:54:17,880 - INFO - groupby - end with duration 00:00 
-2021-12-29 15:54:18,323 - INFO - view data - end with duration 00:00 
-2021-12-29 15:54:18,365 - INFO - Html Jinja - end with duration 00:00 
-2021-12-29 15:54:18,365 - INFO - Html Jinja - end flow 

@@ -9,6 +9,8 @@ curl -X POST -d "version=0.0.1" https://test.fraoustin.fr/flow/4/run?api=ea758b5
 - test transform addcol avec une formule if pd.eval('(df1 < 0.5) & (df2 < 0.5) | (df3 < df4)') => ko
 - test transform: change valeur si null, si groupe ...
 
+- voir rename col et index ?
+
 - voir pour générer des dashboard complet avec des liens grace au for-each
 
 - db location webdav sharepoint googledrive

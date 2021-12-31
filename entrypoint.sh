@@ -1,8 +1,8 @@
 #!/bin/sh
 set -e
 
-if [ "$1" = 'flow' ]; then
-    python -u /flow/flow.py
+if [ "$1" = 'bambou' ]; then
+    python -u /bambou/bambou.py
     exit
 fi
 
