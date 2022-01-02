@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir /bambou
 COPY . /bambou/
+RUN rm -rf /bambou/logs/*
+RUN rm -rf /bambou/bambou.db
 WORKDIR /bambou/files/codemirror
 RUN minify -o . --match=\js *
 RUN minify -o . --match=\css *

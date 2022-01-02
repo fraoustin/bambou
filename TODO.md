@@ -11,13 +11,13 @@ curl -X POST -d "version=0.0.1" https://test.fraoustin.fr/flow/4/run?api=ea758b5
 
 - voir rename col et index ?
 
+- faire un jolie README.md
+
 - ajout transform id
 
 - ajout fichier à pas fixe
 
 - ajout de commentaire dans le design
-
-- ajout dans env de la date ... faire doc sur l'env
 
 - installation windows
 
