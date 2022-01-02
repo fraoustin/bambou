@@ -24,12 +24,6 @@ def static_web(filename, path='..'):
     """
     if filename == "index.html":
         return redirect(request.url[:-1 * len('index.html')])
-    if filename.split('.')[-1] == "js" and filename.split('.')[-2] != "min" and current_app.config['APP_DEBUG'] is False:
-        if os.path.isfile(os.path.join(path, '.'.join(filename.split('.')[:-1])+'.min.js')):
-            return send_from_directory(path, '.'.join(filename.split('.')[:-1])+'.min.js')
-    if filename.split('.')[-1] == "css" and filename.split('.')[-2] != "min" and current_app.config['APP_DEBUG'] is False:
-        if os.path.isfile(os.path.join(path, '.'.join(filename.split('.')[:-1])+'.min.css')):
-            return send_from_directory(path, '.'.join(filename.split('.')[:-1])+'.min.css')
     return send_from_directory(path, filename)
 
 
