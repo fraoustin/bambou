@@ -11,10 +11,6 @@ curl -X POST -d "version=0.0.1" https://test.fraoustin.fr/flow/4/run?api=ea758b5
 
 - voir rename col et index ?
 
-- minifier les css et js
-
-- voir kettle et pentaho
-
 - ajout transform id
 
 - ajout fichier à pas fixe
