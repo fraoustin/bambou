@@ -11,7 +11,19 @@ curl -X POST -d "version=0.0.1" https://test.fraoustin.fr/flow/4/run?api=ea758b5
 
 - voir rename col et index ?
 
-- faire un flux d'exemple complet
+- minifier les css et js
+
+- voir kettle et pentaho
+
+- ajout transform id
+
+- ajout fichier à pas fixe
+
+- ajout de commentaire dans le design
+
+- ajout dans env de la date ... faire doc sur l'env
+
+- installation windows
 
 - voir pour générer des dashboard complet avec des liens grace au for-each
 
