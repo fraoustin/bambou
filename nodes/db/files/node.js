@@ -128,6 +128,7 @@ var bodydb = `
         <select id="loc" name="loc" class="siimple-select siimple-select--fluid" onchange="refreshLocation()">
             <option value="local">local</option>
             <option value="sftp">sftp</option>
+            <option value="webdav">webdav</option>
         </select>
         </td>
     </tr>
@@ -273,7 +274,7 @@ var NodeDb = Node.extend({
 getClass["db"] = NodeDb;
 
 document.getElementById("toolbar_node").appendChild(
-    htmlToElement('<a class="siimple-menu-item"><div class="siimple-btn--big icon-db" onclick="addNode(canvas, new NodeDb(\'Database\'));" title="database"></div></a>')
+    htmlToElement('<a class="siimple-menu-item"><div class="siimple-btn--big icon-db" onclick="addNode(canvas, new NodeDb(\'Data\'));" title="data"></div></a>')
 );
 
 

@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
 from os.path import abspath
 from functools import wraps
-from flask import Blueprint, send_from_directory, redirect, request, current_app
+from flask import Blueprint, send_from_directory, redirect, request
 
 
 __version__ = '0.1.0'

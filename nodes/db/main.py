@@ -6,6 +6,7 @@ import tempfile
 import os
 import uuid
 from openpyxl import load_workbook
+from webdav3.client import Client as ClientWebdav
 
 __version__ = "0.7.2"
 
@@ -80,6 +81,24 @@ class RuntimeDb(Runtime):
                             path = os.path.join(dirpath, pathfile.split("/")[-1])
                             sftp.get(pathfile, path)
                             return pandas.read_excel(f, sheet_name=sheet)
+                if self.loc == 'webdav':
+                    options = {'webdav_hostname': self.locserver,
+                        'webdav_login': self.locuser,
+                        'webdav_password': self.locpassword}
+                    client = ClientWebdav(options)
+                    dirpath = tempfile.mkdtemp()
+                    path = os.path.join(dirpath, pathfile.split("/")[-1])
+                    client.download_sync(remote_path=pathfile, local_path=path)
+                    if self.type == 'csv':
+                        return pandas.read_csv(path, sep=self.delimiter)
+                    if self.type == 'xlsx':
+                        return pandas.read_excel(path, sheet_name=sheet)
+                    if self.type == 'json':
+                        return pandas.read_json(path)
+                    if self.type == 'xml':
+                        return pandas.read_xml(path)
+                    if self.type == 'xml':
+                        return pandas.read_xml(path)
             if self.action == 'write':
                 if self.loc == 'local':
                     if (os.path.isdir(os.path.dirname(os.path.abspath(pathfile)))) is False:
@@ -127,6 +146,34 @@ class RuntimeDb(Runtime):
                             else:
                                 in1.to_excel(path, sheet_name=sheet, index=self.dropindex)
                             sftp.put(path, self.pathfile)
+                if self.loc == 'webdav':
+                    options = {'webdav_hostname': self.locserver,
+                        'webdav_login': self.locuser,
+                        'webdav_password': self.locpassword}
+                    client = ClientWebdav(options)
+                    dirpath = tempfile.mkdtemp()
+                    path = os.path.join(dirpath, pathfile.split("/")[-1])
+                    if self.type == 'csv':
+                        in1.to_csv(path, sep=self.delimiter, index=self.dropindex)
+                    if self.type == 'xlsx':
+                        if client.check(pathfile) is True:
+                            client.download_sync(remote_path=pathfile, local_path=path)
+                        if os.path.isfile(path) is True:
+                            book = load_workbook(path)
+                            writer = pandas.ExcelWriter(path, engine='openpyxl')
+                            writer.book = book
+                            in1.to_excel(writer, sheet_name=sheet, index=self.dropindex)
+                            writer.save()
+                            writer.close()
+                        else:
+                            in1.to_excel(path, sheet_name=sheet, index=self.dropindex)
+                    if self.type == 'json':
+                        in1.to_json(path, index=self.dropindex)
+                    if self.type == 'xml':
+                        in1.to_xml(path, index=self.dropindex)
+                    if client.check(pathfile) is True:
+                        client.clean(pathfile)
+                    client.upload_sync(remote_path=pathfile, local_path=path)
                 return in1
 
 
