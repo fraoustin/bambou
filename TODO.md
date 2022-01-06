@@ -13,7 +13,11 @@ curl -X POST -d "version=0.0.1" https://test.fraoustin.fr/flow/4/run?api=ea758b5
 
 - ajout transform id
 
-- ajout fichier à pas fixe
+- ajout fichier à pas fixe: refaire le write ..
+
+- faire docker avec un out pour data et db
+
+- Faire fonction jinja df.to_table et voir pour faire des jolis tableaux siimple 
 
 - ajout de commentaire dans le design
 
@@ -21,7 +25,7 @@ curl -X POST -d "version=0.0.1" https://test.fraoustin.fr/flow/4/run?api=ea758b5
 
 - voir pour générer des dashboard complet avec des liens grace au for-each
 
-- db location webdav sharepoint googledrive
+- db location sharepoint googledrive
 - db read file drop after read ou backup
 
 - xml add xslt transform

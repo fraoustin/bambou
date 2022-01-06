@@ -6,31 +6,31 @@
   },
   "map": [
     {
-      "id": "15f5541c-88f3-b74d-2cd3-1b3ec8e2d403",
+      "id": "290af54b-f51e-cb6e-07ee-145c07f499ce",
       "type": "db",
       "text": "classTwo",
       "x": 56,
       "y": 246,
       "inputports": [
         {
-          "id": "86c54619-f457-0c36-c5b2-a3b1e9e77207",
+          "id": "79e69d77-c5d9-60bb-c592-dec44e14ab9d",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "b4f0addc-d7d8-3a51-ab83-49496800e6e1",
+          "idport": "916ce669-b6c9-0c37-635c-aee7d4bcd985",
           "name": "out1",
           "target": [
             {
               "name": "in2",
-              "idport": "afebf714-d448-5b59-536f-12c121320b26",
-              "id": "22b299bf-77ab-d1f0-6b04-aeaf46453215"
+              "idport": "88c1bdd4-ebfa-30a7-1a5d-6e4a48f139d6",
+              "id": "f5c9df7a-1ad8-b19d-23af-836909ac9e95"
             }
           ]
         },
         {
-          "idport": "68c20282-342e-bef8-c8c4-b86b5c545c5e",
+          "idport": "d9ac5a31-e75b-de2e-60df-73160a59b519",
           "name": "error",
           "target": []
         }
@@ -57,39 +57,42 @@
         "loc": "local",
         "locserver": "undefined",
         "locuser": "undefined",
-        "locpassword": "undefined"
+        "locpassword": "undefined",
+        "skipfooter": "0",
+        "skiprows": "0",
+        "fields": []
       }
     },
     {
-      "id": "22b299bf-77ab-d1f0-6b04-aeaf46453215",
+      "id": "f5c9df7a-1ad8-b19d-23af-836909ac9e95",
       "type": "link",
       "text": "concat",
       "x": 174,
       "y": 176,
       "inputports": [
         {
-          "id": "e1cb514b-a71c-6662-b3ca-3e3093f9d7e8",
+          "id": "3c2ef237-670e-32d0-60fa-abf35798c8ca",
           "name": "in1"
         },
         {
-          "id": "afebf714-d448-5b59-536f-12c121320b26",
+          "id": "88c1bdd4-ebfa-30a7-1a5d-6e4a48f139d6",
           "name": "in2"
         }
       ],
       "outputports": [
         {
-          "idport": "45024cca-3bda-cd6c-6b09-8cb5ac891b84",
+          "idport": "522bb67a-1b2d-1e67-2815-4e15e31cbc40",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "d3574f97-068a-fc1f-843a-b24f74caa404",
-              "id": "e99a81fc-c46a-164f-3f6a-3157784e78cc"
+              "idport": "c2988a97-5a47-0b54-f4fd-595ffe84301a",
+              "id": "f9f5ef1f-7d06-1534-407a-debd70990a1f"
             }
           ]
         },
         {
-          "idport": "00b70043-8a65-3566-a03d-05ec8f369cae",
+          "idport": "368db8dd-793e-b802-1456-6c94954bb955",
           "name": "error",
           "target": []
         }
@@ -108,31 +111,31 @@
       }
     },
     {
-      "id": "e99a81fc-c46a-164f-3f6a-3157784e78cc",
+      "id": "f9f5ef1f-7d06-1534-407a-debd70990a1f",
       "type": "data",
       "text": "all note",
       "x": 283,
       "y": 168,
       "inputports": [
         {
-          "id": "d3574f97-068a-fc1f-843a-b24f74caa404",
+          "id": "c2988a97-5a47-0b54-f4fd-595ffe84301a",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "c5666cf7-2863-85a4-656f-7ec895ec3111",
+          "idport": "51501a99-aea7-cad6-f4fd-8716464cbe08",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "f9ff958b-257d-727f-5ae5-c8048e163390",
-              "id": "d674ce83-f8d1-9d44-f0c6-b8e855fe9776"
+              "idport": "b3a35e18-0462-dc18-5c8a-551289e46ac5",
+              "id": "ad1fabd4-5d40-7283-868f-e4922fe13ddd"
             }
           ]
         },
         {
-          "idport": "bacfbb86-77eb-e22b-ee1f-6afc0cef3861",
+          "idport": "2218af79-62b1-3a54-2ae7-f66a0a85c8db",
           "name": "error",
           "target": []
         }
@@ -145,40 +148,40 @@
       }
     },
     {
-      "id": "d674ce83-f8d1-9d44-f0c6-b8e855fe9776",
+      "id": "ad1fabd4-5d40-7283-868f-e4922fe13ddd",
       "type": "link",
       "text": "join",
       "x": 376,
       "y": 271,
       "inputports": [
         {
-          "id": "f9ff958b-257d-727f-5ae5-c8048e163390",
+          "id": "b3a35e18-0462-dc18-5c8a-551289e46ac5",
           "name": "in1"
         },
         {
-          "id": "ac8096a6-203b-180a-c00c-c9857233541f",
+          "id": "caa06eb5-7611-45ee-3e0a-4b1c9f47d751",
           "name": "in2"
         }
       ],
       "outputports": [
         {
-          "idport": "3a875c61-795f-2813-03ae-5866b87746b1",
+          "idport": "ca24e875-5079-e5d0-5c5f-1d56204a4b7c",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "90eac7ec-ca46-f7a0-e3c2-1ff1de9bea1a",
-              "id": "c2f336ec-2aec-30b2-460e-43defda7964d"
+              "idport": "472ece38-177e-0fa1-f631-d5a5d8bb73c1",
+              "id": "b99951c9-7152-9446-940e-bb0098b4227a"
             },
             {
               "name": "in1",
-              "idport": "10ad4e82-93b6-ed9b-2125-5fb000401218",
-              "id": "28cf9dd0-033d-8a73-70b8-122d83917271"
+              "idport": "672d0d14-6d97-d2f5-0c26-6a66cac1eb5e",
+              "id": "764e7c86-2c92-7007-30d4-73a051341027"
             }
           ]
         },
         {
-          "idport": "967407fd-f742-cfff-5930-a5bc301c14f2",
+          "idport": "d17330f3-de6a-9a8d-c067-681e684043a2",
           "name": "error",
           "target": []
         }
@@ -197,46 +200,46 @@
       }
     },
     {
-      "id": "435575c3-033f-8cd0-032a-6cec54f59851",
+      "id": "390b3852-e938-07f8-49f6-8e32fc0ac9c3",
       "type": "db",
       "text": "schoolsex",
       "x": 59,
       "y": 457,
       "inputports": [
         {
-          "id": "b774eb9b-d82c-2916-aa9f-d66f5c04c609",
+          "id": "3913c7c1-5a26-d035-122f-ed57299e5e3a",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "258d5678-a45f-c1f0-2a5a-f3dc7041706e",
+          "idport": "ec49e352-cd97-d236-d34f-88b8804f0a15",
           "name": "out1",
           "target": [
             {
               "name": "in2",
-              "idport": "ac8096a6-203b-180a-c00c-c9857233541f",
-              "id": "d674ce83-f8d1-9d44-f0c6-b8e855fe9776"
+              "idport": "caa06eb5-7611-45ee-3e0a-4b1c9f47d751",
+              "id": "ad1fabd4-5d40-7283-868f-e4922fe13ddd"
             },
             {
               "name": "in2",
-              "idport": "ac8096a6-203b-180a-c00c-c9857233541f",
-              "id": "d674ce83-f8d1-9d44-f0c6-b8e855fe9776"
+              "idport": "caa06eb5-7611-45ee-3e0a-4b1c9f47d751",
+              "id": "ad1fabd4-5d40-7283-868f-e4922fe13ddd"
             },
             {
               "name": "in2",
-              "idport": "ac8096a6-203b-180a-c00c-c9857233541f",
-              "id": "d674ce83-f8d1-9d44-f0c6-b8e855fe9776"
+              "idport": "caa06eb5-7611-45ee-3e0a-4b1c9f47d751",
+              "id": "ad1fabd4-5d40-7283-868f-e4922fe13ddd"
             },
             {
               "name": "in2",
-              "idport": "ac8096a6-203b-180a-c00c-c9857233541f",
-              "id": "d674ce83-f8d1-9d44-f0c6-b8e855fe9776"
+              "idport": "caa06eb5-7611-45ee-3e0a-4b1c9f47d751",
+              "id": "ad1fabd4-5d40-7283-868f-e4922fe13ddd"
             }
           ]
         },
         {
-          "idport": "dda3d7cc-bd26-6a2f-56e1-1ed561c33d83",
+          "idport": "2bbb544e-bf34-cacd-78ac-96d49903d35c",
           "name": "error",
           "target": []
         }
@@ -263,40 +266,43 @@
         "loc": "local",
         "locserver": "undefined",
         "locuser": "undefined",
-        "locpassword": "undefined"
+        "locpassword": "undefined",
+        "skipfooter": "0",
+        "skiprows": "0",
+        "fields": []
       }
     },
     {
-      "id": "d966d06b-7cd0-6825-964e-b2a3dd296074",
+      "id": "6a20a051-d4d3-edfc-feb0-6c6eaac03910",
       "type": "transform",
       "text": "Transform",
       "x": 586,
       "y": 262,
       "inputports": [
         {
-          "id": "95267820-f9fe-29cb-9704-7ab66a299652",
+          "id": "62217415-317f-de4e-deee-4bc2f7fb8671",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "b97913b5-76f6-53d8-2507-a3be76c7fc4a",
+          "idport": "7287917e-72dd-9bf5-2967-240665b93be8",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "4510d6af-8c20-1362-3cc1-6ebaa555dea7",
-              "id": "1f5b7015-bb11-ca81-df36-4391033fa026"
+              "idport": "9cafe3a2-6c54-ab6b-5089-280226f79d76",
+              "id": "0d22ffd4-f477-ecc4-65c2-64ee74f5440b"
             },
             {
               "name": "in1",
-              "idport": "e4317815-4420-4aa4-1c10-8edd3fec727d",
-              "id": "ada89b2d-69cf-ecc8-9509-9167020f904b"
+              "idport": "707d92ba-94ee-b1e0-81f6-e41e7d445387",
+              "id": "b96a0641-e3de-6ab1-76d7-fc77a8f020ca"
             }
           ]
         },
         {
-          "idport": "eb918896-ea7a-271f-08b1-d036e641e91d",
+          "idport": "929f0605-a8bb-50b3-467f-79766b4dcb56",
           "name": "error",
           "target": []
         }
@@ -337,25 +343,25 @@
       }
     },
     {
-      "id": "1f5b7015-bb11-ca81-df36-4391033fa026",
+      "id": "0d22ffd4-f477-ecc4-65c2-64ee74f5440b",
       "type": "data",
       "text": "view data",
       "x": 703,
       "y": 183,
       "inputports": [
         {
-          "id": "4510d6af-8c20-1362-3cc1-6ebaa555dea7",
+          "id": "9cafe3a2-6c54-ab6b-5089-280226f79d76",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "75e8a191-dc19-6533-7330-8828704d6107",
+          "idport": "862f3f4a-fd7a-3150-3c71-2916d4622c7b",
           "name": "out1",
           "target": []
         },
         {
-          "idport": "fe70befd-0ebc-c374-7a31-4713dfb07737",
+          "idport": "1d818761-2a18-e015-ae95-82003042d1e3",
           "name": "error",
           "target": []
         }
@@ -368,31 +374,31 @@
       }
     },
     {
-      "id": "ada89b2d-69cf-ecc8-9509-9167020f904b",
+      "id": "b96a0641-e3de-6ab1-76d7-fc77a8f020ca",
       "type": "groupby",
       "text": "groupby",
       "x": 703,
       "y": 365,
       "inputports": [
         {
-          "id": "e4317815-4420-4aa4-1c10-8edd3fec727d",
+          "id": "707d92ba-94ee-b1e0-81f6-e41e7d445387",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "36621e52-4877-55e1-ca49-941d21621c30",
+          "idport": "dfc781de-c2a7-a642-e14f-d3cb7979d33a",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "3cb5a4e4-424a-63d4-60d8-ca2e60ca6f0b",
-              "id": "fbc4642c-c937-b033-2f7f-35c063f63a0b"
+              "idport": "7081f5ce-c043-6bfc-9b04-7ec8a01dbc6a",
+              "id": "4a7a1d21-9396-e79b-56b6-95853e8f0c5a"
             }
           ]
         },
         {
-          "idport": "d714d69c-d2f3-a585-4783-0eb718df1eea",
+          "idport": "3e8c6069-ceb2-547b-f92e-2e72d2e639eb",
           "name": "error",
           "target": []
         }
@@ -419,46 +425,46 @@
       }
     },
     {
-      "id": "6c821c21-5e9a-c8da-4358-97bf81fa9654",
+      "id": "43e2931e-8bc4-d316-420d-8a11bbcd51f7",
       "type": "data",
       "text": "view data",
       "x": 879,
       "y": 348,
       "inputports": [
         {
-          "id": "2e0f814e-3766-99ed-9a55-6d1c631de286",
+          "id": "4486f191-7b03-7566-77ef-5d6245d4984c",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "a1b08c9f-02fc-2272-5ed6-0d7e8a860bd8",
+          "idport": "a2812639-ae8f-adb2-20fe-dc55e5e0bcaf",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "787fcfa0-e1c1-196e-0439-a5165724249c",
-              "id": "f2968a7e-f8f9-4325-5b4d-34f106fcc12d"
+              "idport": "12c7ac71-befa-f19b-68ea-852caa5648b4",
+              "id": "ec6b344f-6f46-ca17-cde4-8862fedc752c"
             },
             {
               "name": "in1",
-              "idport": "310e34ef-919b-e57c-9205-bd49182784aa",
-              "id": "931bb98f-d1f3-789e-45e1-99c8ffd22036"
+              "idport": "56f5bb6e-6945-a87c-ef27-54615167a9c0",
+              "id": "b0adb3a8-f158-970d-be3c-88912c4ae2b4"
             },
             {
               "name": "in1",
-              "idport": "4152a7bb-d4b8-1d7f-05a9-e2f98b26a8a7",
-              "id": "466da6ac-d75d-180f-8381-0d51944e16a0"
+              "idport": "c9f035a4-d596-9f60-87d9-ca9042a755de",
+              "id": "2707d818-a4c9-dba4-12cd-072acd7b35b3"
             },
             {
               "name": "in1",
-              "idport": "61757738-43ad-e6c5-f1f3-c44c0fbd4169",
-              "id": "743163ba-0296-cfc8-6f90-0b50ca5cbbb2"
+              "idport": "464f52f0-fdff-e01e-f024-188d92e3d3db",
+              "id": "e5543ce7-8c59-6d37-392b-a178e9a9b868"
             }
           ]
         },
         {
-          "idport": "fa1874b0-aa3e-4451-a5a9-dc56a3f20e8c",
+          "idport": "9709addd-48ed-0136-4ce5-f57f4bace312",
           "name": "error",
           "target": []
         }
@@ -471,31 +477,31 @@
       }
     },
     {
-      "id": "fbc4642c-c937-b033-2f7f-35c063f63a0b",
+      "id": "4a7a1d21-9396-e79b-56b6-95853e8f0c5a",
       "type": "transform",
       "text": "Add delta",
       "x": 794.2222290039062,
       "y": 357,
       "inputports": [
         {
-          "id": "3cb5a4e4-424a-63d4-60d8-ca2e60ca6f0b",
+          "id": "7081f5ce-c043-6bfc-9b04-7ec8a01dbc6a",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "c57cd719-5a2f-ab32-fbc2-35e19cbf41c9",
+          "idport": "12af2218-7c2a-b941-f9c1-21f21e02ee29",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "2e0f814e-3766-99ed-9a55-6d1c631de286",
-              "id": "6c821c21-5e9a-c8da-4358-97bf81fa9654"
+              "idport": "4486f191-7b03-7566-77ef-5d6245d4984c",
+              "id": "43e2931e-8bc4-d316-420d-8a11bbcd51f7"
             }
           ]
         },
         {
-          "idport": "2dfa3c4b-08a7-0ed5-5294-1b036f5ea0b1",
+          "idport": "8687af82-dc14-28f6-71e2-ec1228cb1d99",
           "name": "error",
           "target": []
         }
@@ -530,31 +536,31 @@
       }
     },
     {
-      "id": "28cf9dd0-033d-8a73-70b8-122d83917271",
+      "id": "764e7c86-2c92-7007-30d4-73a051341027",
       "type": "data",
       "text": "view data",
       "x": 477.3333435058594,
       "y": 265,
       "inputports": [
         {
-          "id": "10ad4e82-93b6-ed9b-2125-5fb000401218",
+          "id": "672d0d14-6d97-d2f5-0c26-6a66cac1eb5e",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "42532fdf-172a-071f-beeb-c57d6cce9751",
+          "idport": "b3fd8f72-a6b0-a50d-3551-caee59364766",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "95267820-f9fe-29cb-9704-7ab66a299652",
-              "id": "d966d06b-7cd0-6825-964e-b2a3dd296074"
+              "idport": "62217415-317f-de4e-deee-4bc2f7fb8671",
+              "id": "6a20a051-d4d3-edfc-feb0-6c6eaac03910"
             }
           ]
         },
         {
-          "idport": "0b725bd1-3091-1ff9-8c47-a71e8a3a980a",
+          "idport": "585cf9dd-7607-0690-8e9b-4b620f1437e1",
           "name": "error",
           "target": []
         }
@@ -567,31 +573,31 @@
       }
     },
     {
-      "id": "743163ba-0296-cfc8-6f90-0b50ca5cbbb2",
+      "id": "e5543ce7-8c59-6d37-392b-a178e9a9b868",
       "type": "db",
       "text": "csv",
       "x": 1067,
       "y": 260,
       "inputports": [
         {
-          "id": "61757738-43ad-e6c5-f1f3-c44c0fbd4169",
+          "id": "464f52f0-fdff-e01e-f024-188d92e3d3db",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "856a04e6-5c5f-acf5-4055-d3b1e31c1479",
+          "idport": "e82d477b-8902-79d3-0a64-d7ca1fe2cd9f",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "e1df770b-14a3-7a72-1d5f-5548458b8321",
-              "id": "27fa4a42-c29b-332b-8482-956ddad1ce2c"
+              "idport": "bde3160f-ddcf-d97c-d659-bb2d799def94",
+              "id": "b2ed4e77-9f2b-57e2-e9df-5f992532ecd6"
             }
           ]
         },
         {
-          "idport": "e104bc8f-4c23-dbc4-dba0-5ab7da5d2eaf",
+          "idport": "f02a4261-5674-a9e6-3d66-956e413ce64b",
           "name": "error",
           "target": []
         }
@@ -618,35 +624,38 @@
         "loc": "local",
         "locserver": "",
         "locuser": "",
-        "locpassword": ""
+        "locpassword": "",
+        "skipfooter": "0",
+        "skiprows": "0",
+        "fields": []
       }
     },
     {
-      "id": "466da6ac-d75d-180f-8381-0d51944e16a0",
+      "id": "2707d818-a4c9-dba4-12cd-072acd7b35b3",
       "type": "db",
       "text": "xlsx",
       "x": 1078,
       "y": 371,
       "inputports": [
         {
-          "id": "4152a7bb-d4b8-1d7f-05a9-e2f98b26a8a7",
+          "id": "c9f035a4-d596-9f60-87d9-ca9042a755de",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "1ff1eb2d-832c-6242-6517-e6f9c50a54a7",
+          "idport": "7da2591e-f80d-db60-cb9a-454be078bf6f",
           "name": "out1",
           "target": [
             {
               "name": "in2",
-              "idport": "49870a7b-fa64-f7aa-7f79-c36dc6e605ba",
-              "id": "27fa4a42-c29b-332b-8482-956ddad1ce2c"
+              "idport": "5ad3e5ec-1b8f-fc80-4545-d7e7e49ec710",
+              "id": "b2ed4e77-9f2b-57e2-e9df-5f992532ecd6"
             }
           ]
         },
         {
-          "idport": "635716f9-5fa5-68ea-1a53-790076f70839",
+          "idport": "3fae2c20-53db-4213-e3de-9f16dece13c8",
           "name": "error",
           "target": []
         }
@@ -673,35 +682,38 @@
         "loc": "local",
         "locserver": "",
         "locuser": "",
-        "locpassword": ""
+        "locpassword": "",
+        "skipfooter": "0",
+        "skiprows": "0",
+        "fields": []
       }
     },
     {
-      "id": "931bb98f-d1f3-789e-45e1-99c8ffd22036",
+      "id": "b0adb3a8-f158-970d-be3c-88912c4ae2b4",
       "type": "db",
       "text": "json",
       "x": 1083,
       "y": 482,
       "inputports": [
         {
-          "id": "310e34ef-919b-e57c-9205-bd49182784aa",
+          "id": "56f5bb6e-6945-a87c-ef27-54615167a9c0",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "db44c2e1-04bc-a34c-2784-63bd7b1f2980",
+          "idport": "610f2bd5-458d-068d-6b8d-18ed5c2c62b9",
           "name": "out1",
           "target": [
             {
               "name": "in2",
-              "idport": "49870a7b-fa64-f7aa-7f79-c36dc6e605ba",
-              "id": "27fa4a42-c29b-332b-8482-956ddad1ce2c"
+              "idport": "5ad3e5ec-1b8f-fc80-4545-d7e7e49ec710",
+              "id": "b2ed4e77-9f2b-57e2-e9df-5f992532ecd6"
             }
           ]
         },
         {
-          "idport": "3f76900e-38b7-e8eb-ea41-93f1409b65e8",
+          "idport": "dd0b2a2f-aaa5-c4c9-d9a2-545592b4205b",
           "name": "error",
           "target": []
         }
@@ -728,35 +740,38 @@
         "loc": "local",
         "locserver": "",
         "locuser": "",
-        "locpassword": ""
+        "locpassword": "",
+        "skipfooter": "0",
+        "skiprows": "0",
+        "fields": []
       }
     },
     {
-      "id": "f2968a7e-f8f9-4325-5b4d-34f106fcc12d",
+      "id": "ec6b344f-6f46-ca17-cde4-8862fedc752c",
       "type": "db",
       "text": "xml",
       "x": 1079,
       "y": 587,
       "inputports": [
         {
-          "id": "787fcfa0-e1c1-196e-0439-a5165724249c",
+          "id": "12c7ac71-befa-f19b-68ea-852caa5648b4",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "9cd41531-2dba-b12f-6d6c-05cb0cd0636b",
+          "idport": "aa762b6e-9962-3903-cc51-3df67b7d0bf9",
           "name": "out1",
           "target": [
             {
               "name": "in2",
-              "idport": "49870a7b-fa64-f7aa-7f79-c36dc6e605ba",
-              "id": "27fa4a42-c29b-332b-8482-956ddad1ce2c"
+              "idport": "5ad3e5ec-1b8f-fc80-4545-d7e7e49ec710",
+              "id": "b2ed4e77-9f2b-57e2-e9df-5f992532ecd6"
             }
           ]
         },
         {
-          "idport": "d57cd034-f549-3e1d-d0a2-ae2683d26e82",
+          "idport": "69b1e520-af5e-357b-9d2c-ebe1ffb1dcf4",
           "name": "error",
           "target": []
         }
@@ -783,39 +798,42 @@
         "loc": "local",
         "locserver": "",
         "locuser": "",
-        "locpassword": ""
+        "locpassword": "",
+        "skipfooter": "0",
+        "skiprows": "0",
+        "fields": []
       }
     },
     {
-      "id": "27fa4a42-c29b-332b-8482-956ddad1ce2c",
+      "id": "b2ed4e77-9f2b-57e2-e9df-5f992532ecd6",
       "type": "synchro",
       "text": "synchro",
       "x": 1263,
       "y": 263,
       "inputports": [
         {
-          "id": "e1df770b-14a3-7a72-1d5f-5548458b8321",
+          "id": "bde3160f-ddcf-d97c-d659-bb2d799def94",
           "name": "in1"
         },
         {
-          "id": "49870a7b-fa64-f7aa-7f79-c36dc6e605ba",
+          "id": "5ad3e5ec-1b8f-fc80-4545-d7e7e49ec710",
           "name": "in2"
         }
       ],
       "outputports": [
         {
-          "idport": "cceed038-b8dc-20d8-11e0-87677817e543",
+          "idport": "ba4d61dc-3b3e-ba33-c8e2-1cfa5c97dc8a",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "557d1ffb-7995-6da8-d6b8-cbcdecd64558",
-              "id": "17db178d-2574-95ca-eea2-fb3af74722ef"
+              "idport": "b6eddf92-4910-510f-9c61-be0df57f3b26",
+              "id": "ed775fde-ec0e-12b3-7031-bcfd3bdafa61"
             }
           ]
         },
         {
-          "idport": "4c69622e-989e-e5a8-60a7-20d3881a80e0",
+          "idport": "b6ae01d2-8d4e-ac10-4954-66437ad7261d",
           "name": "error",
           "target": []
         }
@@ -823,37 +841,37 @@
       "parameters": {}
     },
     {
-      "id": "89a31355-d30f-c27f-a20f-eadadcad8fe2",
+      "id": "2c5729ae-62d9-56fc-f990-1fdf4f603449",
       "type": "log",
       "text": "Log",
       "x": 1457,
       "y": 248,
       "inputports": [
         {
-          "id": "ff6ba2e5-1c16-0fc9-7faf-2e78b918fdb8",
+          "id": "acf634ef-5128-bb6d-726a-f1543fbebcda",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "c04712f5-adeb-5ff7-f661-f5becbbf639a",
+          "idport": "8a4b3192-7749-b667-137d-20736824aff6",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "be6c0d90-8b2e-32df-690e-fc932a5bdd3a",
-              "id": "07201aad-1d1f-006d-a3fc-56f16f235334"
+              "idport": "c2fa95ed-a28f-6332-a40c-fb27e5c2253f",
+              "id": "a9424a37-e510-d8d0-2edd-d439a15abdd9"
             }
           ]
         },
         {
-          "idport": "e0cdb706-d68e-ffe3-c851-9ad2367ac19b",
+          "idport": "52cfb010-9b9b-66c3-ec28-fb6595a7f39d",
           "name": "error",
           "target": [
             {
               "name": "in1",
-              "idport": "2f885d74-77dc-2965-2ae2-3315e8234948",
-              "id": "ccea299f-5f94-284c-6eca-66712d26c266"
+              "idport": "7ddc5c3a-ef57-e6b0-056c-0110ee7d7392",
+              "id": "0a236bef-9bc3-ad52-5a35-933725a2133b"
             }
           ]
         }
@@ -867,31 +885,31 @@
       }
     },
     {
-      "id": "17db178d-2574-95ca-eea2-fb3af74722ef",
+      "id": "ed775fde-ec0e-12b3-7031-bcfd3bdafa61",
       "type": "subflow",
       "text": "Subflow",
       "x": 1359,
       "y": 256,
       "inputports": [
         {
-          "id": "557d1ffb-7995-6da8-d6b8-cbcdecd64558",
+          "id": "b6eddf92-4910-510f-9c61-be0df57f3b26",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "b803f5a3-0b91-2022-ea33-5c8c4aa711e5",
+          "idport": "d43f1d7a-d10d-7de9-2b06-9d9a610c4620",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "ff6ba2e5-1c16-0fc9-7faf-2e78b918fdb8",
-              "id": "89a31355-d30f-c27f-a20f-eadadcad8fe2"
+              "idport": "acf634ef-5128-bb6d-726a-f1543fbebcda",
+              "id": "2c5729ae-62d9-56fc-f990-1fdf4f603449"
             }
           ]
         },
         {
-          "idport": "055fed9f-6ad6-7ab1-c108-600a19b2b6cb",
+          "idport": "88cc5c43-1199-60e5-1ada-4dce100939e9",
           "name": "error",
           "target": []
         }
@@ -910,25 +928,25 @@
       }
     },
     {
-      "id": "07201aad-1d1f-006d-a3fc-56f16f235334",
+      "id": "a9424a37-e510-d8d0-2edd-d439a15abdd9",
       "type": "code",
       "text": "Code",
       "x": 1547,
       "y": 240,
       "inputports": [
         {
-          "id": "be6c0d90-8b2e-32df-690e-fc932a5bdd3a",
+          "id": "c2fa95ed-a28f-6332-a40c-fb27e5c2253f",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "ef7a0dd3-9925-6741-6de0-769c011354a9",
+          "idport": "20b6188e-4bd6-254a-9f16-4d08945276ad",
           "name": "out1",
           "target": []
         },
         {
-          "idport": "6625155a-7ad2-cc69-ab50-28cde657dfda",
+          "idport": "50bb7fcc-28aa-4d97-3b8e-f9f7c53de60d",
           "name": "error",
           "target": []
         }
@@ -938,31 +956,31 @@
       }
     },
     {
-      "id": "ccea299f-5f94-284c-6eca-66712d26c266",
+      "id": "0a236bef-9bc3-ad52-5a35-933725a2133b",
       "type": "log",
       "text": "Error",
       "x": 1551,
       "y": 333,
       "inputports": [
         {
-          "id": "2f885d74-77dc-2965-2ae2-3315e8234948",
+          "id": "7ddc5c3a-ef57-e6b0-056c-0110ee7d7392",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "7e948ca4-bb9c-a29b-0d5b-c17a4f964a7f",
+          "idport": "96060d57-c574-c450-7248-c781b631b8dc",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "d87a4a2d-e8a3-fcc0-24f3-bd415b28d92a",
-              "id": "b8775389-364d-838a-df8a-493b71bcd187"
+              "idport": "be93ee53-6972-21d2-e572-03fbf0f75d07",
+              "id": "7494291a-73e9-ab00-5948-eb251a35fc21"
             }
           ]
         },
         {
-          "idport": "d9d88a41-045f-bc1b-d0d3-aa777f420d97",
+          "idport": "0792bbda-aecc-cf61-1483-cc4bdb2bcb19",
           "name": "error",
           "target": []
         }
@@ -976,25 +994,25 @@
       }
     },
     {
-      "id": "b8775389-364d-838a-df8a-493b71bcd187",
+      "id": "7494291a-73e9-ab00-5948-eb251a35fc21",
       "type": "data",
       "text": "view data",
       "x": 1637,
       "y": 325,
       "inputports": [
         {
-          "id": "d87a4a2d-e8a3-fcc0-24f3-bd415b28d92a",
+          "id": "be93ee53-6972-21d2-e572-03fbf0f75d07",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "d147224e-6e8d-fed1-c4c5-c260293c8a82",
+          "idport": "354b47e9-8ee0-cdef-df81-40a5f3159e1e",
           "name": "out1",
           "target": []
         },
         {
-          "idport": "87ee85d3-94ee-2861-39c5-86d4ce24d1ac",
+          "idport": "5b4dd668-9a4e-e32a-07e8-8f53aed64aa9",
           "name": "error",
           "target": []
         }
@@ -1007,31 +1025,31 @@
       }
     },
     {
-      "id": "2e63d8f7-413d-2b7c-0651-3718c7366579",
+      "id": "10640438-61e9-07cd-50a1-0cf173c9f6ab",
       "type": "db",
       "text": "classOne",
       "x": 47,
       "y": 124,
       "inputports": [
         {
-          "id": "c52763ab-ac33-10fe-cc24-28e05f5a642f",
+          "id": "cf686d5b-1d39-af73-b3bf-03a285e59bf4",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "88d49efc-edb8-5472-bc8f-86abf6309600",
+          "idport": "eaceea6e-5959-aa6b-ab64-e860ebcf1015",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "e1cb514b-a71c-6662-b3ca-3e3093f9d7e8",
-              "id": "22b299bf-77ab-d1f0-6b04-aeaf46453215"
+              "idport": "3c2ef237-670e-32d0-60fa-abf35798c8ca",
+              "id": "f5c9df7a-1ad8-b19d-23af-836909ac9e95"
             }
           ]
         },
         {
-          "idport": "79ace99a-273d-c279-31bf-d6a99b95f0ab",
+          "idport": "43195bd3-fd29-32aa-d1b8-1e6e4a25cbf9",
           "name": "error",
           "target": []
         }
@@ -1039,7 +1057,7 @@
       "parameters": {
         "user": "<< user >>",
         "password": "<< password >>",
-        "type": "csv",
+        "type": "fwf",
         "url": "/your/path",
         "server": "<< server >>",
         "port": "<< port >>",
@@ -1058,29 +1076,48 @@
         "loc": "local",
         "locserver": "undefined",
         "locuser": "undefined",
-        "locpassword": "undefined"
+        "locpassword": "undefined",
+        "skipfooter": "1",
+        "skiprows": "1",
+        "fields": [
+          {
+            "field": "name",
+            "start": "0",
+            "end": "9"
+          },
+          {
+            "field": "matiere",
+            "start": "9",
+            "end": "19"
+          },
+          {
+            "field": "note",
+            "start": "19",
+            "end": "23"
+          }
+        ]
       }
     },
     {
-      "id": "352b2bbc-aecf-7f38-fc5d-81f47b998a34",
+      "id": "7b7a806a-d90f-4131-3d8e-02b625e6660f",
       "type": "htmljinja",
       "text": "Jinja",
       "x": 643.6666870117188,
       "y": 106,
       "inputports": [
         {
-          "id": "5a8d6c1f-3aa8-b2c5-ec16-38bb004e156a",
+          "id": "7dc3c5b7-9356-e413-fa33-2da26184a86a",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "41c4714b-6cdc-100a-120d-694eb5483dbd",
+          "idport": "b165d3b6-64f4-1341-2ed3-c867fc71e994",
           "name": "out1",
           "target": []
         },
         {
-          "idport": "f6bfbd5f-bbce-bb61-ca4a-ff99c4d56cf0",
+          "idport": "091534ba-413a-525e-e003-d63dc2e74f6b",
           "name": "error",
           "target": []
         }
@@ -1097,31 +1134,31 @@
       }
     },
     {
-      "id": "c2f336ec-2aec-30b2-460e-43defda7964d",
+      "id": "b99951c9-7152-9446-940e-bb0098b4227a",
       "type": "foreach",
       "text": "For-each",
       "x": 489.66668701171875,
       "y": 114,
       "inputports": [
         {
-          "id": "90eac7ec-ca46-f7a0-e3c2-1ff1de9bea1a",
+          "id": "472ece38-177e-0fa1-f631-d5a5d8bb73c1",
           "name": "in1"
         }
       ],
       "outputports": [
         {
-          "idport": "433cd391-6161-cb69-9824-03faa968efb5",
+          "idport": "04afba38-e4fb-e212-162d-6f9fc033478c",
           "name": "out1",
           "target": [
             {
               "name": "in1",
-              "idport": "5a8d6c1f-3aa8-b2c5-ec16-38bb004e156a",
-              "id": "352b2bbc-aecf-7f38-fc5d-81f47b998a34"
+              "idport": "7dc3c5b7-9356-e413-fa33-2da26184a86a",
+              "id": "7b7a806a-d90f-4131-3d8e-02b625e6660f"
             }
           ]
         },
         {
-          "idport": "8bbb0fde-7085-8ea0-83cf-b9e5f222e2dd",
+          "idport": "2b7ccbb4-0997-785d-54b7-5d7e961d28b9",
           "name": "error",
           "target": []
         }
@@ -1135,7 +1172,7 @@
   ],
   "env": {
     "prod": {
-      "classOnePath": "./test/classOne.csv",
+      "classOnePath": "./test/classOne.txt",
       "classTwoPath": "./test/classTwo.csv",
       "schoolSexPath": "./test/schoolSex.csv"
     }
