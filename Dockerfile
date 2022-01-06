@@ -10,48 +10,48 @@ COPY . /bambou/
 RUN rm -rf /bambou/logs/*
 RUN rm -rf /bambou/bambou.db
 WORKDIR /bambou/files/codemirror
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/files/css
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/files/javascripts
-RUN minify -o . --match=\js *
+RUN minify -o . --match=\js *.js
 WORKDIR /bambou/nodes/code/files
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/nodes/data/files
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/nodes/db/files
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/nodes/foreach/files
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/nodes/groupby/files
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/nodes/htmljinja/files
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/nodes/link/files
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/nodes/log/files
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/nodes/mail/files
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/nodes/subflow/files
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/nodes/synchro/files
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 WORKDIR /bambou/nodes/transform/files
-RUN minify -o . --match=\js *
-RUN minify -o . --match=\css *
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 
 FROM python:3.8-slim
 
