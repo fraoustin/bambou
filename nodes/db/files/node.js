@@ -1,6 +1,6 @@
 var bodydb = `
 <table id="db" style="width:100%">
-    <tr class="mssql pgsql mysql sqlite odbc csv xlsx json xml">
+    <tr class="mssql pgsql mysql sqlite odbc csv xlsx json xml fwf">
         <td><label class="siimple-label">Connection type</label></td>
         <td>
         <select id="type" name="type" class="siimple-select siimple-select--fluid" onchange="refreshDb()">
@@ -13,8 +13,13 @@ var bodydb = `
             <option value="xlsx">xlsx</option>
             <option value="json">json</option>
             <option value="xml">xml</option>
+            <option value="fwf">fixed-width formatted</option>
         </select>
         </td>
+    </tr>
+    <tr class="fwf">
+        <td><label class="siimple-label">Definition: </label></td>
+        <td class="minimal"><div class="siimple-btn--big icon-editconf siimple--float-right" onclick="editconffwf()"></div></td>
     </tr>
     <tr class="sqlite odbc">
         <td><label class="siimple-label">Url: </label></td>
@@ -44,7 +49,7 @@ var bodydb = `
         <td><label class="siimple-label">Option Connexion: </label></td>
         <td><input name="optioncnx" id="optioncnx" class="siimple-input siimple-input--fluid" value=""></td>
     </tr>
-    <tr class="mssql pgsql mysql sqlite odbc csv xlsx json xml">
+    <tr class="mssql pgsql mysql sqlite odbc csv xlsx json xml fwf">
         <td><label class="siimple-label">Action</label></td>
         <td>
         <select id="action" name="action" class="siimple-select siimple-select--fluid" onchange="refreshDbAction()">
@@ -89,7 +94,7 @@ var bodydb = `
         </select>
         </td>
     </tr>
-    <tr class="action read write csv xlsx json xml">
+    <tr class="action read write csv xlsx json xml fwf">
         <td><label class="siimple-label">path: </label></td>
         <td><input name="pathfile" id="pathfile" class="siimple-input siimple-input--fluid" value=""></td>
     </tr>
@@ -113,7 +118,7 @@ var bodydb = `
         <td><label class="siimple-label">sheet: </label></td>
         <td><input name="sheet" id="sheet" class="siimple-input siimple-input--fluid" value=""></td>
     </tr>
-    <tr class="action write mssql pgsql mysql sqlite odbc csv xlsx json xml">
+    <tr class="action write mssql pgsql mysql sqlite odbc csv xlsx json xml fwf">
         <td><label class="siimple-label">Drop Index</label></td>
         <td>
         <select id="dropindex" name="dropindex" class="siimple-select siimple-select--fluid" onchange="refreshDb()">
@@ -122,24 +127,25 @@ var bodydb = `
         </select>
         </td>
     </tr>
-    <tr class="csv xlsx json xml">
+    <tr class="csv xlsx json xml fwf">
         <td><label class="siimple-label">Location</label></td>
         <td>
         <select id="loc" name="loc" class="siimple-select siimple-select--fluid" onchange="refreshLocation()">
             <option value="local">local</option>
             <option value="sftp">sftp</option>
+            <option value="webdav">webdav</option>
         </select>
         </td>
     </tr>
-    <tr class="location csv xlsx json xml">
+    <tr class="location csv xlsx json xml fwf">
         <td><label class="siimple-label">server: </label></td>
         <td><input name="locserver" id="locserver" class="siimple-input siimple-input--fluid" value=""></td>
     </tr>
-    <tr class="location csv xlsx json xml">
+    <tr class="location csv xlsx json xml fwf">
         <td><label class="siimple-label">user: </label></td>
         <td><input name="locuser" id="locuser" class="siimple-input siimple-input--fluid" value=""></td>
     </tr>
-    <tr class="location csv xlsx json xml">
+    <tr class="location csv xlsx json xm fwf">
         <td><label class="siimple-label">password: </label></td>
         <td><input name="locpassword" id="locpassword" class="siimple-input siimple-input--fluid" value="" type="password"></td>
     </tr>    
@@ -166,6 +172,45 @@ var modalquery = `
         </div>
     </div>
 </div>
+`;
+var modaleditconffwf = `  
+<div class="siimple-modal siimple-modal" id="modal-editconffwf" style="display:none;">
+    <div class="siimple-modal-content">
+        <div class="siimple-modal-header">
+            <div class="siimple-modal-header-title">Editor Fixed-Width Formatted</div>
+            <div class="siimple-modal-header-close" id="modal-editconffwf-close"></div>
+        </div>
+        <div class="siimple-modal-body" style="height: 80%;">
+            <table id="editconffwf-gen" style="width:100%">
+                <tr>
+                    <td><label class="siimple-label">Skip rows header: </label></td>
+                    <td><input name="skiprows" id="skiprows" class="siimple-input siimple-input--fluid" value=""></td>
+                </tr>
+                <tr>
+                    <td><label class="siimple-label">Skip rows footer: </label></td>
+                    <td><input name="skipfooter" id="skipfooter" class="siimple-input siimple-input--fluid" value=""></td>
+                </tr>
+            </table>
+            <table id="editconffwf-fields" style="width:100%">
+                <tr>
+                    <td><label class="siimple-label">Fields</label></td>
+                    <td>Start</td>
+                    <td>End</td>
+                    <td class="minimal"><div class="siimple-btn--big icon-add siimple--float-right" onclick="add_fields()"></div></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+`;
+
+var addfields = `
+<tr class="fields">
+    <td><input class="siimple-input siimple-input--fluid" value=""></td>
+    <td><input class="siimple-input siimple-input--fluid" value=""></td>
+    <td><input class="siimple-input siimple-input--fluid" value=""></td>
+    <td class="minimal"><div class="siimple-btn--big icon-del siimple--float-right" onclick="del_row(this)"></div></td>
+</tr>
 `;
 
 var footdb = `
@@ -198,7 +243,10 @@ var NodeDb = Node.extend({
             "loc" : "local",
             "locserver" : "",
             "locuser" : "",
-            "locpassword" : ""
+            "locpassword" : "",
+            "skiprows" : 0,
+            "skipfooter" : 0,
+            "fields" : []
 
         })
         this.editor = null;
@@ -230,8 +278,6 @@ var NodeDb = Node.extend({
         document.getElementById("locuser").value = this.getUserData()["locuser"];
         document.getElementById("locpassword").value = this.getUserData()["locpassword"];
         document.getElementById("save").onclick = save_parameterdb;
-        refreshDb();
-        refreshDbAction();
         var hgt = document.body.clientHeight - 535;
         document.getElementById('query').style.height = hgt + "px";
         this.editor = CodeMirror.fromTextArea(document.getElementById("query"), {
@@ -252,6 +298,26 @@ var NodeDb = Node.extend({
         document.getElementById("modal-query-close").addEventListener("click", function () {
             document.getElementById("modal-query").style.display = "none";
         });
+
+        if (document.getElementById("modal-editconffwf") != null ){
+            document.getElementById("modal-editconffwf").parentNode.removeChild(document.getElementById("modal-editconffwf"))
+        }
+
+        document.getElementById("content").appendChild(htmlToElement(modaleditconffwf));
+        document.getElementById("modal-editconffwf-close").addEventListener("click", function () {
+            document.getElementById("modal-editconffwf").style.display = "none";
+        });
+        document.getElementById("skiprows").value = this.getUserData()["skiprows"] || "0";
+        document.getElementById("skipfooter").value = this.getUserData()["skipfooter"] || "0";
+        var fields = this.getUserData()["fields"] || []; 
+        fields.forEach(function(elt){
+            document.getElementById("editconffwf-fields").appendChild(htmlToElement(addfields));
+            var obj = document.getElementById("editconffwf-fields").querySelectorAll("tr.fields:last-child")[0];
+            obj.querySelectorAll("input")[0].value = elt["field"]
+            obj.querySelectorAll("input")[1].value = elt["start"]
+            obj.querySelectorAll("input")[2].value = elt["end"]
+        })
+
         this.editormax = CodeMirror.fromTextArea(document.getElementById("querymax"), {
             mode: {name: "sql",
                     version: 3,
@@ -264,6 +330,8 @@ var NodeDb = Node.extend({
         document.querySelectorAll("#modal-query .siimple-modal-body")[0].style.height = hgt + "px";
         hgt = hgt - 40
         document.querySelectorAll("#modal-query .siimple-modal-body .CodeMirror")[0].style.height = hgt + "px";
+        refreshDb();
+        refreshDbAction();
     },
     getCode: function(){
         return this.editor.getValue();
@@ -273,11 +341,19 @@ var NodeDb = Node.extend({
 getClass["db"] = NodeDb;
 
 document.getElementById("toolbar_node").appendChild(
-    htmlToElement('<a class="siimple-menu-item"><div class="siimple-btn--big icon-db" onclick="addNode(canvas, new NodeDb(\'Database\'));" title="database"></div></a>')
+    htmlToElement('<a class="siimple-menu-item"><div class="siimple-btn--big icon-db" onclick="addNode(canvas, new NodeDb(\'Data\'));" title="data"></div></a>')
 );
 
 
 function save_parameterdb(){
+    var fields = []
+    Array.from(document.getElementById("editconffwf-fields").querySelectorAll("tr.fields")).forEach(function(obj){
+        var field = {'field':obj.querySelectorAll("input")[0].value,
+            'start':obj.querySelectorAll("input")[1].value,
+            'end':obj.querySelectorAll("input")[2].value
+        }
+        fields.push(field)
+    });
     canvas.getFigure(document.getElementById("property-id").value).setUserData({
         "user": document.getElementById("user").value,
         "password": document.getElementById("password").value,
@@ -300,7 +376,10 @@ function save_parameterdb(){
         "loc": document.getElementById("loc").value,
         "locserver": document.getElementById("locserver").value,
         "locuser": document.getElementById("locuser").value,
-        "locpassword": document.getElementById("locpassword").value
+        "locpassword": document.getElementById("locpassword").value,
+        "skipfooter": document.getElementById("skipfooter").value,
+        "skiprows": document.getElementById("skiprows").value,
+        "fields": fields
     });
     saveFlow();
 }
@@ -322,6 +401,11 @@ function refreshDbAction(){
     Array.from(document.getElementById("db").querySelectorAll("tr.action:not(."+document.getElementById("action").value+"."+document.getElementById("type").value+")")).forEach(function(tr){
         tr.style.display="none";
     })
+    if (document.getElementById("action").value == "write") {
+        document.getElementById("editconffwf-gen").style.display="none";
+    } else {
+        document.getElementById("editconffwf-gen").style.display="";        
+    }
     refreshLocation();
 }
 
@@ -345,5 +429,23 @@ function maxQuery(){
 
 function saveMaxQuery(){
     canvas.getFigure(document.getElementById("property-id").value).editor.getDoc().setValue(canvas.getFigure(document.getElementById("property-id").value).editormax.getValue());
+    save_parameterdb();
+}
+
+function editconffwf(){
+    document.getElementById('modal-editconffwf').style.display = '';
+    tosave();
+}
+
+function add_fields(){
+    document.getElementById("editconffwf-fields").appendChild(htmlToElement(addfields));
+    
+}
+
+function del_row(obj){
+    obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode)
+}
+
+function saveFields(){
     save_parameterdb();
 }

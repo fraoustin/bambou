@@ -7,7 +7,8 @@
 }
 
 .icon-db,
-.icon-maxquery {
+.icon-maxquery,
+.icon-editconf {
     font-family: icomoon;
     speak: none;
     font-style: normal;
@@ -24,6 +25,10 @@
 
 .icon-maxquery:before {
     content: "\e989"
+}
+
+.icon-editconf:before {
+    content: "\e9b8"
 }
 
 #modal-query .CodeMirror-line{

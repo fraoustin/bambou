@@ -32,7 +32,7 @@ def withjinja(text, string='{'):
                     'variable_end_string': '}}',
                     'comment_start_string': '{#',
                     'comment_end_string': '#}'}}
-    template = Environment(block_start_string=getstring[string]["block_start_string"],
+    template = Environment(extensions=['jinja2_time.TimeExtension'], block_start_string=getstring[string]["block_start_string"],
                         block_end_string=getstring[string]["block_end_string"],
                         variable_start_string=getstring[string]["variable_start_string"],
                         variable_end_string=getstring[string]["variable_end_string"],
