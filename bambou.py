@@ -37,7 +37,8 @@ toBoolean = {'true': True, 'false': False}
 BAMBOU_DIR = os.environ.get('BAMBOU_DIR', os.path.dirname(os.path.abspath(__file__)))
 config = configparser.ConfigParser()
 config.read(os.path.join(BAMBOU_DIR, 'bambou.cfg'))
-
+if 'BAMBOU' not in config.keys():
+    config['BAMBOU'] = {}
 BAMBOU_PORT = int(os.environ.get('BAMBOU_PORT', config['BAMBOU'].get('Port', '5000')))
 BAMBOU_DEBUG = toBoolean.get(os.environ.get('BAMBOU_DEBUG', config['BAMBOU'].get('Debug', 'false')), False)
 BAMBOU_HOST = os.environ.get('BAMBOU_HOST', config['BAMBOU'].get('Host', '0.0.0.0'))

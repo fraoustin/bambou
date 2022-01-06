@@ -77,7 +77,7 @@ RUN rm -rf /bambou/entrypoint.sh
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-COPY /bambou/bambou.cfg /db/bambou.cfg
+COPY bambou.cfg /db/bambou.cfg
 
 RUN pip install -r /bambou/REQUIREMENTS.txt
 
