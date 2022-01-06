@@ -8,3 +8,4 @@ __pycache__
 # ignore file swp vi
 *.swp
 bambou.db
+/test/test*
