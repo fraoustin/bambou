@@ -25,9 +25,9 @@ def to_fwf(df, fname="", names=[], colspecs=[]):
                 value = str(df.index[row][df.index.names.index(name)])
             else:
                 value = str(df.iloc[row][name])
-            size = colspecs[colidx][1] - colspecs[colidx][0] -1
+            size = colspecs[colidx][1] - colspecs[colidx][0] - 1
             value = value.ljust(size, ' ')[:size]
-            string=string[0:colspecs[colidx][0]] + value + string[colspecs[colidx][0]+size:]
+            string = string[0:colspecs[colidx][0]] + value + string[colspecs[colidx][0]+size:]
             colidx = colidx + 1
         data.append(string)
     content = "\n".join(data)

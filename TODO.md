@@ -13,8 +13,6 @@ curl -X POST -d "version=0.0.1" https://test.fraoustin.fr/flow/4/run?api=ea758b5
 
 - ajout transform id
 
-- ajout fichier à pas fixe: refaire le write ..
-
 - faire docker avec un out pour data et db
 
 - Faire fonction jinja df.to_table et voir pour faire des jolis tableaux siimple 

@@ -67,6 +67,8 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir /data
 VOLUME /data
+RUN mkdir /db
+VOLUME /db
 
 RUN mkdir /bambou
 COPY --from=builder /bambou /bambou
@@ -77,10 +79,10 @@ RUN chmod +x /entrypoint.sh
 
 RUN pip install -r /bambou/REQUIREMENTS.txt
 
-ENV bambou_PORT 5000
-ENV bambou_DEBUG false
-ENV bambou_HOST 0.0.0.0
-ENV bambou_DIR /data
+ENV BAMBOU_PORT 5000
+ENV BAMBOU_DEBUG false
+ENV BAMBOU_HOST 0.0.0.0
+ENV BAMBOU_DIR /db
 
 EXPOSE 5000
 
