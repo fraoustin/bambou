@@ -34,20 +34,24 @@ class RuntimeSubflow(Runtime):
         env = withjinja(self.env).render({"in1": in1}).strip()
         version = withjinja(self.version).render({"in1": in1}).strip()
         global SQLALCHEMY_DATABASE_URI
+        self.debug("connect to database bambou")
         engine = create_engine(SQLALCHEMY_DATABASE_URI)
         if len(version) == 0:
             query = "select map from flow where id = %s" % self.flow
         else:
             query = "select map from flowversion where idflow = %s and version = '%s'" % (self.flow, version)
+        self.debug("get map subflow")
         with engine.connect() as connection:
             result = connection.execute(query)
             for row in result:
                 data = row[0]
+        self.debug("load map subflow")
         map = json.loads(data)
         for elt in self.newenvs:
             if len(env) == 0:
                 env = "subflow"
             map['env'][env][withjinja(elt["name"]).render({"in1": in1}).strip()] = withjinja(elt["value"]).render({"in1": in1}).strip()
+        self.debug("run subflow")
         runMap(json.dumps(map), "", levellog=self.level, env=env, version=version, idrun=self.idrun, logger=self._log, onflow=self, in1=in1)
         return in1
 

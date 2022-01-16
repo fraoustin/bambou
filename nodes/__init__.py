@@ -10,13 +10,49 @@ import logging
 import traceback
 import threading
 import pandas
-from jinja2 import Environment, select_autoescape
+from jinja2 import Environment, select_autoescape, __version__ as verjinja
 
 
-def get_random_string(length):
+def get_random_string(length=20):
     letters = string.ascii_lowercase
     result_str = ''.join(random.choice(letters) for i in range(length))
     return result_str
+
+
+def columns(df):
+    return [str(col) for col in df.index.names if col is None] + [str(col) for col in df.columns]
+
+
+def rows(df):
+    datas = []
+    for row in range(0, len(df.index)):
+        data = []
+        idx = [str(col) for col in df.index.names if col is None]
+        if len(idx) > 1:
+            for col in idx:
+                data.append(str(df.index[row][df.index.names.index(col)]))
+        elif len(idx) == 1:
+            data.append(str(df.index[row]))
+        for col in df.columns:
+            data.append(str(df.iloc[row][col]))
+        datas.append(data)
+    return datas
+
+
+def rows_of_dict(df):
+    datas = []
+    for row in range(0, len(df.index)):
+        data = {}
+        idx = [str(col) for col in df.index.names if col is None]
+        if len(idx) > 1:
+            for col in idx:
+                data[idx] = str(df.index[row][df.index.names.index(col)])
+        elif len(idx) == 1:
+            data[idx] = str(df.index[row])
+        for col in df.columns:
+            data[col] = str(df.iloc[row][col])
+        datas.append(data)
+    return datas
 
 
 def withjinja(text, string='{'):
@@ -32,14 +68,17 @@ def withjinja(text, string='{'):
                     'variable_end_string': '}}',
                     'comment_start_string': '{#',
                     'comment_end_string': '#}'}}
-    template = Environment(extensions=['jinja2_time.TimeExtension'], block_start_string=getstring[string]["block_start_string"],
-                        block_end_string=getstring[string]["block_end_string"],
-                        variable_start_string=getstring[string]["variable_start_string"],
-                        variable_end_string=getstring[string]["variable_end_string"],
-                        comment_start_string=getstring[string]["comment_start_string"],
-                        comment_end_string=getstring[string]["comment_end_string"],
-                        autoescape=select_autoescape()).from_string(text)
-    return template
+    env = Environment(extensions=['jinja2_time.TimeExtension'], block_start_string=getstring[string]["block_start_string"],
+                    block_end_string=getstring[string]["block_end_string"],
+                    variable_start_string=getstring[string]["variable_start_string"],
+                    variable_end_string=getstring[string]["variable_end_string"],
+                    comment_start_string=getstring[string]["comment_start_string"],
+                    comment_end_string=getstring[string]["comment_end_string"],
+                    autoescape=select_autoescape())
+    env.filters["columns"] = columns
+    env.filters["rows"] = rows
+    env.filters["rows_of_dict"] = rows_of_dict
+    return env.from_string(text)
 
 
 class ThreadAttr(threading.Thread):
@@ -75,6 +114,7 @@ class ThreadStart(threading.Thread):
 
 
 class Node(Blueprint):
+
     def __init__(self, name="", path="", import_name=__name__, *args, **kwargs):
         if len(name) == 0:
             self._nodename = self.__class__.__name__.lower()
@@ -168,7 +208,7 @@ class Runtime(object):
             end = time.time()
             self.info('end with duration %s' % time.strftime('%M:%S', time.gmtime(end-start)))
             if len(self._next) == 0:
-                self.info('end flow')
+                self.info('end flow with duration %s' % time.strftime('%M:%S', time.gmtime(end-DictRun()[self.idrun]["start"])))
             if DictRun()[self.idrun]["state"] is True:
                 for [runtime, input] in self._next:
                     ThreadAttr(self, runtime, input, df).start()
@@ -214,7 +254,7 @@ class Runtime(object):
 def runMap(data, pathlog, levellog=logging.DEBUG, env="", version="", idrun=None, logger=None, onflow=None, in1=None):
     map = json.loads(data)
     if idrun not in DictRun():
-        DictRun()[idrun] = {"state": True, "id": map["flow"]["id"]}
+        DictRun()[idrun] = {"state": True, "id": map["flow"]["id"], "start": time.time()}
     if len(env) > 0:
         if env in map["env"]:
             sub = map['env'][env]

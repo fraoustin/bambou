@@ -67,8 +67,11 @@ class RuntimeMail(Runtime):
         server = smtplib.SMTP(self.smtpserver, int(self.smtpport))
         if self.smtpssl == 'true':
             server.starttls()
+        self.debug("connect to server mail %s" % self.smtpserver)
         server.login(self.smtpuser, self.smtppassword)
+        self.debug("send message")
         server.send_message(message)
+        self.debug("close connection")
         server.quit()
         return in1
 

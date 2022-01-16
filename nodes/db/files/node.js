@@ -142,13 +142,17 @@ var bodydb = `
         <td><input name="locserver" id="locserver" class="siimple-input siimple-input--fluid" value=""></td>
     </tr>
     <tr class="location csv xlsx json xml fwf">
+        <td><label class="siimple-label">port: </label></td>
+        <td><input name="locport" id="locport" class="siimple-input siimple-input--fluid" value=""></td>
+    </tr>
+    <tr class="location csv xlsx json xml fwf">
         <td><label class="siimple-label">user: </label></td>
         <td><input name="locuser" id="locuser" class="siimple-input siimple-input--fluid" value=""></td>
     </tr>
     <tr class="location csv xlsx json xm fwf">
         <td><label class="siimple-label">password: </label></td>
         <td><input name="locpassword" id="locpassword" class="siimple-input siimple-input--fluid" value="" type="password"></td>
-    </tr>    
+    </tr>
 </table>
 `;
 
@@ -166,7 +170,7 @@ var modalquery = `
         <div class="siimple-modal-footer">
             <div class="siimple-navbar">
                 <div class="siimple--float-right">
-                    <div class="siimple--float-right siimple-btn siimple-btn--big icon-save siimple-btn--primary" onclick="saveMaxQuery()"></div>
+                    <div id="savemax" class="siimple--float-right siimple-btn siimple-btn--big icon-save siimple-btn--primary" onclick="saveMaxQuery()"></div>
                 </div>
             </div>
         </div>
@@ -219,7 +223,7 @@ var footdb = `
 var NodeDb = Node.extend({
     NAME: "db",
     init:function(name){
-        this._super(name=name, path="/db/db.png");
+        this._super(name=name, path="/db/dbout.png");
         this.setUserData({
             "user":"",
             "password" : "",
@@ -242,6 +246,7 @@ var NodeDb = Node.extend({
             "dropindex" : "false",
             "loc" : "local",
             "locserver" : "",
+            "locport" : "",
             "locuser" : "",
             "locpassword" : "",
             "skiprows" : 0,
@@ -275,6 +280,7 @@ var NodeDb = Node.extend({
         document.getElementById("dropindex").value = this.getUserData()["dropindex"];
         document.getElementById("loc").value = this.getUserData()["loc"];
         document.getElementById("locserver").value = this.getUserData()["locserver"];
+        document.getElementById("locport").value = this.getUserData()["locport"] || '';
         document.getElementById("locuser").value = this.getUserData()["locuser"];
         document.getElementById("locpassword").value = this.getUserData()["locpassword"];
         document.getElementById("save").onclick = save_parameterdb;
@@ -286,7 +292,10 @@ var NodeDb = Node.extend({
                     singleLineStringErrors: false},
             lineNumbers: false,
             indentUnit: 4,
-            matchBrackets: true
+            matchBrackets: true,
+            onChange: function (cm) {
+                tosave()
+            }
         });
         document.querySelectorAll(".CodeMirror")[0].style.height = hgt + "px";
 
@@ -326,6 +335,7 @@ var NodeDb = Node.extend({
             indentUnit: 4,
             matchBrackets: true
         });
+        this.editormax.on("change",function(){tosavebyid("savemax")})
         var hgt = document.body.clientHeight - 245;
         document.querySelectorAll("#modal-query .siimple-modal-body")[0].style.height = hgt + "px";
         hgt = hgt - 40
@@ -335,6 +345,13 @@ var NodeDb = Node.extend({
     },
     getCode: function(){
         return this.editor.getValue();
+    },
+    changePath:function(){
+        if (this.getUserData()["action"] == "write") {
+            this.setPath("/db/dbout.png");
+        } else {
+            this.setPath("/db/dbin.png");
+        }
     }
 });
 
@@ -375,6 +392,7 @@ function save_parameterdb(){
         "dropindex": document.getElementById("dropindex").value,
         "loc": document.getElementById("loc").value,
         "locserver": document.getElementById("locserver").value,
+        "locport": document.getElementById("locport").value || '',
         "locuser": document.getElementById("locuser").value,
         "locpassword": document.getElementById("locpassword").value,
         "skipfooter": document.getElementById("skipfooter").value,
@@ -382,6 +400,7 @@ function save_parameterdb(){
         "fields": fields
     });
     saveFlow();
+    canvas.getFigure(document.getElementById("property-id").value).changePath();
 }
 
 function refreshDb(){
@@ -404,7 +423,7 @@ function refreshDbAction(){
     if (document.getElementById("action").value == "write") {
         document.getElementById("editconffwf-gen").style.display="none";
     } else {
-        document.getElementById("editconffwf-gen").style.display="";        
+        document.getElementById("editconffwf-gen").style.display="";
     }
     refreshLocation();
 }
@@ -429,7 +448,9 @@ function maxQuery(){
 
 function saveMaxQuery(){
     canvas.getFigure(document.getElementById("property-id").value).editor.getDoc().setValue(canvas.getFigure(document.getElementById("property-id").value).editormax.getValue());
-    save_parameterdb();
+    save_parameterdb();    
+    document.getElementById("savemax").classList.remove("siimple-btn--error");
+    document.getElementById("savemax").classList.add("siimple-btn--primary");
 }
 
 function editconffwf(){

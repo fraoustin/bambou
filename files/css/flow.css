@@ -223,3 +223,11 @@ td {
 #modal-version .min div {
     margin-left: 10px;
 }
+
+#panel-zoom {
+    position: fixed;
+    bottom: 0;
+    background: white;
+    right: calc(30% + 40px);
+    padding-bottom: 10px;
+}

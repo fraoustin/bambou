@@ -25,7 +25,7 @@ var modalcode = `
         <div class="siimple-modal-footer">
             <div class="siimple-navbar">
                 <div class="siimple--float-right">
-                    <div class="siimple--float-right siimple-btn siimple-btn--big icon-save siimple-btn--primary" onclick="saveMaxCode()"></div>
+                    <div id="savemax" class="siimple--float-right siimple-btn siimple-btn--big icon-save siimple-btn--primary" onclick="saveMaxCode()"></div>
                 </div>
             </div>
         </div>
@@ -55,7 +55,10 @@ var NodeCode = Node.extend({
                     singleLineStringErrors: false},
             lineNumbers: false,
             indentUnit: 4,
-            matchBrackets: true
+            matchBrackets: true,
+            onChange: function (cm) {
+                tosave()
+            }
         });
         document.querySelectorAll("#property-body .CodeMirror")[0].style.height = hgt + "px";
         document.getElementById("save").onclick = save_parametercode;
@@ -76,6 +79,7 @@ var NodeCode = Node.extend({
             indentUnit: 4,
             matchBrackets: true
         });
+        this.editormax.on("change",function(){tosavebyid("savemax")})
         var hgt = document.body.clientHeight - 245;
         document.querySelectorAll("#modal-code .siimple-modal-body")[0].style.height = hgt + "px";
         hgt = hgt - 40
@@ -108,6 +112,8 @@ function maxCode(){
 
 function saveMaxCode(){
     canvas.getFigure(document.getElementById("property-id").value).editor.getDoc().setValue(canvas.getFigure(document.getElementById("property-id").value).editormax.getValue());
+    document.getElementById("savemax").classList.remove("siimple-btn--error");
+    document.getElementById("savemax").classList.add("siimple-btn--primary");
     save_parametercode();
 }
 

@@ -37,7 +37,11 @@
 	  	<div  onselectstart="javascript:/*IE8 hack*/return false" id="gfx_holder" style="width:3000px; height:3000px;">
         </div>
     </div>
-
+    <div class="siimple--float-right" id="panel-zoom">
+    <div class="siimple-btn siimple-btn--big icon-zoomout siimple-btn--light" id="zoomout" onclick="canvas.setZoom(canvas.getZoom()*1.1,true);"></div>
+    <div class="siimple-btn siimple-btn--big icon-search siimple-btn--dark" id="zoom" onclick="canvas.setZoom(1.0, true)"></div>
+    <div class="siimple-btn siimple-btn--big icon-zoomin siimple-btn--light" id="zoomin" onclick="canvas.setZoom(canvas.getZoom()*0.9,true);"></div>
+    </div>
     <div class=".siimple--float-right" id="property-panel">
         <div class="siimple-navbar">
             <div class="siimple-navbar-title" id="property-title"></div>

@@ -45,7 +45,7 @@ BAMBOU_HOST = os.environ.get('BAMBOU_HOST', config['BAMBOU'].get('Host', '0.0.0.
 BAMBOU_LOGS = os.environ.get('BAMBOU_LOGS', config['BAMBOU'].get('Log', os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")))
 
 app = Flask(__name__)
-app.config["VERSION"] = "0.8.4"
+app.config["VERSION"] = "0.8.5"
 
 app.config["APP_PORT"] = BAMBOU_PORT
 app.config["APP_HOST"] = BAMBOU_HOST
@@ -81,6 +81,11 @@ NODES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'nodes')
 for node in [node for node in os.listdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'nodes')) if os.path.isdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'nodes', node)) and '_' not in node]:
     app.config['NODES'].append(node)
     module = importlib.import_module('nodes.%s.main' % node)
+    app.register_blueprint(getattr(module, node.capitalize())(name=node, url_prefix="/"))
+
+for node in [node for node in os.listdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'nodesextra')) if os.path.isdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'nodesextra', node)) and '_' not in node and node != 'sample']:
+    app.config['NODES'].append(node)
+    module = importlib.import_module('nodesextra.%s.main' % node)
     app.register_blueprint(getattr(module, node.capitalize())(name=node, url_prefix="/"))
 
 
