@@ -45,7 +45,7 @@ BAMBOU_HOST = os.environ.get('BAMBOU_HOST', config['BAMBOU'].get('Host', '0.0.0.
 BAMBOU_LOGS = os.environ.get('BAMBOU_LOGS', config['BAMBOU'].get('Log', os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")))
 
 app = Flask(__name__)
-app.config["VERSION"] = "0.8.5"
+app.config["VERSION"] = "0.8.6"
 
 app.config["APP_PORT"] = BAMBOU_PORT
 app.config["APP_HOST"] = BAMBOU_HOST

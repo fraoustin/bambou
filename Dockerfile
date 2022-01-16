@@ -52,6 +52,15 @@ RUN minify -o . --match=\css *.css
 WORKDIR /bambou/nodes/transform/files
 RUN minify -o . --match=\js *.js
 RUN minify -o . --match=\css *.css
+WORKDIR /bambou/nodes/comment/files
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
+WORKDIR /bambou/nodes/mail/files
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
+WORKDIR /bambou/nodesextra/sample/files
+RUN minify -o . --match=\js *.js
+RUN minify -o . --match=\css *.css
 
 FROM python:3.8-slim
 
