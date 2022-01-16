@@ -86,7 +86,8 @@ var Node = draw2d.shape.basic.Image.extend({
         });
         saved();
     },
-    setPanelParameter:function(){}
+    setPanelParameter:function(){},
+    changePath:function(){}
 });
 
 var Canvas = draw2d.Canvas.extend({
@@ -139,7 +140,7 @@ function _saveJSON(canvas){
     canvas.figures.data.forEach(function(obj){
         var dict = {"id": obj.id,
             "type": obj.cssClass,
-            "text": obj.children.data[0].figure.text,
+            "text": (obj.children.data[0] === undefined) ? "" : obj.children.data[0].figure.text,
             "x": obj.x,
             "y": obj.y
         }
@@ -201,6 +202,7 @@ function readJSON(canvas, id){
             objs['map'].forEach(function(obj){
                 var node = new getClass[obj.type](obj.text)
                 node.setUserData(obj['parameters'])
+                node.changePath()
                 nodes[obj.id] = node;
                 canvas.add(node, obj.x, obj.y); 
             });
@@ -245,9 +247,13 @@ function clearProperty(){
 }    
 
 function tosave(){
-    if (document.getElementById("save").classList.contains("siimple-btn--primary")) {
-        document.getElementById("save").classList.remove("siimple-btn--primary");
-        document.getElementById("save").classList.add("siimple-btn--error");
+    tosavebyid("save")
+}
+
+function tosavebyid(id){
+    if (document.getElementById(id).classList.contains("siimple-btn--primary")) {
+        document.getElementById(id).classList.remove("siimple-btn--primary");
+        document.getElementById(id).classList.add("siimple-btn--error");
     };
 }
 

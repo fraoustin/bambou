@@ -11,6 +11,7 @@ class RuntimeCode(Runtime):
 
     def run(self, in1):
         out = DataFrame()
+        self.debug("exec code")
         exec(withjinja(self.code).render({"in1": self.in1}))
         return out
 

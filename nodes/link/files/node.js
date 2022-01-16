@@ -93,7 +93,7 @@ var NodeLink = Node.extend({
     init:function(name){
         this._super(name=name, path="/link/link.png");
         this.setUserData({
-            "type" : "concat",
+            "type" : "join",
             "axis" : "0",
             "join" : "inner",
             "how" : "inner",
@@ -121,6 +121,13 @@ var NodeLink = Node.extend({
         document.getElementById("validate").value = this.getUserData()["validate"];
         document.getElementById("save").onclick = save_parameterlink;
         refreshType();
+    },
+    changePath:function(){
+        if (this.getUserData()["type"] == "join") {
+            this.setPath("/link/link.png");
+        } else {
+            this.setPath("/link/concat.png");
+        }
     }
 });
 
@@ -145,6 +152,7 @@ function save_parameterlink(){
         "validate": document.getElementById("validate").value
     });
     saveFlow();
+    canvas.getFigure(document.getElementById("property-id").value).changePath();
 }
 
 function refreshType(){

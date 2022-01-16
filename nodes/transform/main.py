@@ -14,6 +14,7 @@ class RuntimeTransform(Runtime):
 
     def run(self, in1):
         for step in self.steps:
+            self.debug("run step %s : %s " % (step["action"], step["param1"]))
             if step["action"] == 'rename':
                 in1 = in1.rename(columns={step["param1"]: step["param2"], })
             if step["action"] == 'dropcol':

@@ -16,6 +16,7 @@ class RuntimeForeach(Runtime):
                 filt = [filt, ]
             querys.append(" and ".join(["%s == '%s'" % (groupby, value) for groupby, value in zip(self.groupbys, filt)]))
         for query in querys[:-1]:
+            self.debug("run new group: %s" % query)
             try:
                 for [runtime, input] in self._next:
                     ThreadAttr(self, runtime, input, in1.query(query)).start()

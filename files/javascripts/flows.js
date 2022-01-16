@@ -375,8 +375,27 @@ $("body").keyup(function(e) {
         canvas.onClick();
     }
 });
+
+function findAncestor (el, cls) {
+    while ((el = el.parentElement) && !el.classList.contains(cls));
+    return el;
+}
+
 $("body").keydown(function(e) {
+    if(e.ctrlKey && e.keyCode === 187)  {
+        canvas.setZoom(canvas.getZoom()*0.9,true);
+        return false;
+    };
+    if(e.ctrlKey && e.keyCode === 54)  {
+        canvas.setZoom(canvas.getZoom()*1.1,true);
+        return false;
+    };
     if(e.ctrlKey && e.keyCode === 83)  {
+        if (document.getElementById("savemax")){
+            if(findAncestor(document.getElementById("savemax"), "siimple-modal").style.display == ""){
+                document.getElementById("savemax").click()
+            }
+        }
         document.getElementById("save").click()
         return false;
     };
@@ -395,6 +414,7 @@ $("body").keydown(function(e) {
         if (canvas.copynode != null){
             var node = new getClass[canvas.copynode['type']](canvas.copynode['name'])
             node.setUserData(canvas.copynode['parameters'])
+            node.changePath()
             addNode(canvas, node);
         };
         canvas.copynode = null;

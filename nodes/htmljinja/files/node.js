@@ -67,7 +67,7 @@ var modalhtmljinja = `
         <div class="siimple-modal-footer">
             <div class="siimple-navbar">
                 <div class="siimple--float-right">
-                    <div class="siimple--float-right siimple-btn siimple-btn--big icon-save siimple-btn--primary" onclick="saveMaxHtmljinja()"></div>
+                    <div  id="savemax" class="siimple--float-right siimple-btn siimple-btn--big icon-save siimple-btn--primary" onclick="saveMaxHtmljinja()"></div>
                 </div>
             </div>
         </div>
@@ -114,7 +114,10 @@ var NodeHtmljinja = Node.extend({
         };
         this.editor = CodeMirror.fromTextArea(document.getElementById("htmljinja"), {
             mode: mixedMode,
-            selectionPointer: true
+            selectionPointer: true,
+            onChange: function (cm) {
+                tosave()
+            }
         });
         document.querySelectorAll("#property-body .CodeMirror")[0].style.height = hgt + "px";
         document.getElementById("save").onclick = save_parameterhtmljinja;
@@ -130,8 +133,9 @@ var NodeHtmljinja = Node.extend({
         this.editormax = CodeMirror.fromTextArea(document.getElementById("htmljinjamax"), {
             mode: mixedMode,
             selectionPointer: true,
-            lineNumbers: true,
+            lineNumbers: true
         });
+        this.editormax.on("change",function(){tosavebyid("savemax")})
         var hgt = document.body.clientHeight - 245;
         document.querySelectorAll("#modal-htmljinja .siimple-modal-body")[0].style.height = hgt + "px";
         hgt = hgt - 40
@@ -174,6 +178,8 @@ function maxHtmljinja(){
 function saveMaxHtmljinja(){
     canvas.getFigure(document.getElementById("property-id").value).editor.getDoc().setValue(canvas.getFigure(document.getElementById("property-id").value).editormax.getValue());
     save_parameterhtmljinja();
+    document.getElementById("savemax").classList.remove("siimple-btn--error");
+    document.getElementById("savemax").classList.add("siimple-btn--primary");
 }
 
 function refreshLocationJinja(){

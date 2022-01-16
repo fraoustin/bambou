@@ -54,6 +54,11 @@ class RuntimeDb(Runtime):
             self.dropindex = False
         else:
             self.dropindex = True
+        if len(self.locport) > 0:
+            self.locport = int(self.locport)
+        else:
+            if self.loc == 'sftp':
+                self.locport = 22
 
     def run(self, in1):
         table = withjinja(self.table).render({"in1": in1})
@@ -63,6 +68,7 @@ class RuntimeDb(Runtime):
         colspecs = [(int(obj["start"]), int(obj["end"])) for obj in self.fields]
         names = [obj["field"] for obj in self.fields]
         if self.type in ('mssql', 'pgsql', 'mysql', 'sqlite'):
+            self.debug("connect to //%s:********@%s:%s/%s%s" % (self.user, self.server, self.port, self.database, self.optioncnx))
             if self.type == 'mssql':
                 cnx_str = "mssql+pymssql://%s:%s@%s:%s/%s%s" % (self.user, self.password, self.server, self.port, self.database, self.optioncnx)
                 con = create_engine(cnx_str)
@@ -80,13 +86,16 @@ class RuntimeDb(Runtime):
             if self.action == 'read':
                 if len(table) > 0:
                     query = "select * from %s" % table
+                self.debug("read sql %s" % query)
                 return pandas.read_sql_query(query, con=con)
             if self.action == 'write':
+                self.debug("run sql")
                 in1.to_sql(self.table, con=con, if_exists=self.ifexists, method=self.method, index=self.dropindex)
                 return in1
         if self.type in ('csv', 'xlsx', 'json', 'xml', 'fwf'):
             if self.action == 'read':
                 if self.loc == 'local':
+                    self.debug("read local %s" % pathfile)
                     if self.type == 'csv':
                         return pandas.read_csv(pathfile, sep=self.delimiter)
                     if self.type == 'xlsx':
@@ -100,7 +109,9 @@ class RuntimeDb(Runtime):
                 if self.loc == 'sftp':
                     cnopts = pysftp.CnOpts()
                     cnopts.hostkeys = None
-                    with pysftp.Connection(self.locserver, username=self.locuser, password=self.locpassword, cnopts=cnopts) as sftp:
+                    self.debug("connect sftp %s" % self.locserver)
+                    with pysftp.Connection(self.locserver, username=self.locuser, password=self.locpassword, port=self.locport, cnopts=cnopts) as sftp:
+                        self.debug("read sftp %s" % pathfile)
                         with sftp.open(pathfile) as f:
                             if self.type == 'csv':
                                 return pandas.read_csv(f, sep=self.delimiter)
@@ -114,13 +125,16 @@ class RuntimeDb(Runtime):
                             sftp.get(pathfile, path)
                             return pandas.read_excel(f, sheet_name=sheet)
                 if self.loc == 'webdav':
+                    self.debug("connect webdav %s" % self.locserver)
                     options = {'webdav_hostname': self.locserver,
                         'webdav_login': self.locuser,
                         'webdav_password': self.locpassword}
                     client = ClientWebdav(options)
                     dirpath = tempfile.mkdtemp()
                     path = os.path.join(dirpath, pathfile.split("/")[-1])
+                    self.debug("download webdav %s" % self.pathfile)
                     client.download_sync(remote_path=pathfile, local_path=path)
+                    self.debug("read local %s" % path)
                     if self.type == 'csv':
                         return pandas.read_csv(path, sep=self.delimiter)
                     if self.type == 'xlsx':
@@ -134,7 +148,9 @@ class RuntimeDb(Runtime):
             if self.action == 'write':
                 if self.loc == 'local':
                     if (os.path.isdir(os.path.dirname(os.path.abspath(pathfile)))) is False:
+                        self.debug("local mkdir %s" % os.path.dirname(os.path.abspath(pathfile)))
                         os.makedirs(os.path.dirname(os.path.abspath(pathfile)))
+                    self.debug("local write %s" % pathfile)
                     if self.type == 'csv':
                         in1.to_csv(pathfile, sep=self.delimiter, index=self.dropindex)
                     if self.type == 'xlsx':
@@ -156,7 +172,9 @@ class RuntimeDb(Runtime):
                 if self.loc == 'sftp':
                     cnopts = pysftp.CnOpts()
                     cnopts.hostkeys = None
-                    with pysftp.Connection(self.locserver, username=self.locuser, password=self.locpassword, cnopts=cnopts) as sftp:
+                    self.debug("connect sftp %s" % self.locserver)
+                    with pysftp.Connection(self.locserver, username=self.locuser, password=self.locpassword, port=self.locport, cnopts=cnopts) as sftp:
+                        self.debug("write sftp %s" % pathfile)
                         if self.type in ('csv', 'json', 'xml', 'fwf'):
                             with sftp.open(pathfile, 'w') as f:
                                 if self.type == 'csv':
@@ -183,12 +201,14 @@ class RuntimeDb(Runtime):
                                 in1.to_excel(path, sheet_name=sheet, index=self.dropindex)
                             sftp.put(path, self.pathfile)
                 if self.loc == 'webdav':
+                    self.debug("connect webdav %s" % self.locserver)
                     options = {'webdav_hostname': self.locserver,
                         'webdav_login': self.locuser,
                         'webdav_password': self.locpassword}
                     client = ClientWebdav(options)
                     dirpath = tempfile.mkdtemp()
                     path = os.path.join(dirpath, pathfile.split("/")[-1])
+                    self.debug("write loc %s" % path)
                     if self.type == 'csv':
                         in1.to_csv(path, sep=self.delimiter, index=self.dropindex)
                     if self.type == 'xlsx':
@@ -211,6 +231,7 @@ class RuntimeDb(Runtime):
                         to_fwf(in1, path, names=names, colspecs=colspecs)
                     if client.check(pathfile) is True:
                         client.clean(pathfile)
+                    self.debug("upload webdav %s to %s" % (path, pathfile))
                     client.upload_sync(remote_path=pathfile, local_path=path)
                 return in1
 

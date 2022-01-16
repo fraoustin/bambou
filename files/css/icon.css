@@ -25,7 +25,9 @@
 .icon-stop,
 .icon-history,
 .icon-tags,
-.icon-upload {
+.icon-upload,
+.icon-zoomin,
+.icon-zoomout {
     font-family: icomoon;
     speak: none;
     font-style: normal;
@@ -110,4 +112,12 @@
 
 .icon-upload:before {
     content: "\e9c6"
+}
+
+.icon-zoomin:before {
+    content: "\e987"
+}
+
+.icon-zoomout:before {
+    content: "\e988"
 }
