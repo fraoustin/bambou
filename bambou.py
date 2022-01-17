@@ -12,24 +12,24 @@ from paramapplication import ParamApplication
 from core import Core
 
 BAMBOU_LOGO = """
-       XX
-      XXXX    XX
-      XXXXXXXXXXX
-  XXXXX        XX
- X   X          X
-X   XX          X
-X   X   XX      X
-X   X  XXX  XX  X
-X   X  XX   XX  X
-XX  XX       X  X
-XX  XXX  XXX   XX
- XX XXXX  X   XXX
- XXXXXXXX   XXXXX
- XXXXXXXXXXXXXXXX
-  XXX XXXX   XXX
-   XX XXXX  XXXX
-       XXXX XXX
-        XXX
+       ##
+      ####    ##
+      ###########
+  #####        ##
+ #   #          #
+#   ##          #
+#   #   ##      #
+#   #  ###  ##  #
+#   #  ##   ##  #
+##  ##       #  #
+##  ###  ###   ##
+ ## ####  #   ###
+ ########   #####
+ ################
+  ### ####   ###
+   ## ####  ####
+       #### ###
+        ###
 """
 
 toBoolean = {'true': True, 'false': False}
