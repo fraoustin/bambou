@@ -14,7 +14,7 @@
 
 - voir pour générer des dashboard complet avec des liens grace au for-each
 
-- revoir la gestion des éléments déportés pour standardiser le fonctionnement : db location sharepoint googledrive ftp
+- db: ajout sharepoint googledrive 
 - db read file drop after read ou backup
 
 - xml add xslt transform
@@ -23,3 +23,5 @@
 - https
 
 - trouver une licence
+
+- check de data: print(df.fruits.unique()), df.fruits.value_counts()
