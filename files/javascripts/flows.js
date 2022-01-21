@@ -372,7 +372,17 @@ document.addEventListener("DOMContentLoaded",function () {
 });
 $("body").keyup(function(e) {
     if (e.key === "Escape") { 
-        canvas.onClick();
+        var i = false;            
+        Array.from(document.querySelectorAll(".siimple-modal")).forEach(function(obj){
+            if (obj.style.display == "")
+            {
+                obj.style.display = "none";
+                i = true;
+            }
+        });
+        if (i == false){
+            canvas.onClick();
+        }
     }
 });
 

@@ -12,24 +12,24 @@ from paramapplication import ParamApplication
 from core import Core
 
 BAMBOU_LOGO = """
-       XX
-      XXXX    XX
-      XXXXXXXXXXX
-  XXXXX        XX
- X   X          X
-X   XX          X
-X   X   XX      X
-X   X  XXX  XX  X
-X   X  XX   XX  X
-XX  XX       X  X
-XX  XXX  XXX   XX
- XX XXXX  X   XXX
- XXXXXXXX   XXXXX
- XXXXXXXXXXXXXXXX
-  XXX XXXX   XXX
-   XX XXXX  XXXX
-       XXXX XXX
-        XXX
+       ##
+      ####    ##
+      ###########
+  #####        ##
+ #   #          #
+#   ##          #
+#   #   ##      #
+#   #  ###  ##  #
+#   #  ##   ##  #
+##  ##       #  #
+##  ###  ###   ##
+ ## ####  #   ###
+ ########   #####
+ ################
+  ### ####   ###
+   ## ####  ####
+       #### ###
+        ###
 """
 
 toBoolean = {'true': True, 'false': False}
@@ -45,7 +45,7 @@ BAMBOU_HOST = os.environ.get('BAMBOU_HOST', config['BAMBOU'].get('Host', '0.0.0.
 BAMBOU_LOGS = os.environ.get('BAMBOU_LOGS', config['BAMBOU'].get('Log', os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs")))
 
 app = Flask(__name__)
-app.config["VERSION"] = "0.8.5"
+app.config["VERSION"] = "0.9.0"
 
 app.config["APP_PORT"] = BAMBOU_PORT
 app.config["APP_HOST"] = BAMBOU_HOST
