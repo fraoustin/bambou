@@ -26,7 +26,12 @@ var step = `
             <option value="addcol">add column</option>
         </select>
     </td>
-    <td><input class="siimple-input siimple-input--fluid" value=""><input class="hidden siimple-input siimple-input--fluid" value=""><input class="hidden siimple-input siimple-input--fluid" value=""></td>
+    <td><input class="siimple-input siimple-input--fluid" value=""><input class="hidden siimple-input siimple-input--fluid" value=""><input class="hidden siimple-input siimple-input--fluid" value="">
+    <select class="siimple-select siimple-select--fluid hidden">
+        <option value="ascending">ascending</option>
+        <option value="descending">descending</option>
+    </select>
+    </td>
     <td class="minimal"><div class="siimple-btn--big icon-del siimple--float-right" onclick="del_step(this)"></div></td>
 </tr>
 `;
@@ -47,6 +52,7 @@ var NodeTransform = Node.extend({
             obj.querySelectorAll("input")[0].value = elt["param1"];
             obj.querySelectorAll("input")[1].value = elt["param2"];
             obj.querySelectorAll("input")[2].value = elt["param3"];
+            obj.querySelectorAll("select")[1].value = elt["sort"] || '';
             refreshAction(obj.querySelectorAll("select")[0]);
         })
         document.getElementById("save").onclick = save_parametertransform;
@@ -66,7 +72,8 @@ function save_parametertransform(){
         var step = {'action':obj.querySelectorAll("select")[0].value,
             'param1':obj.querySelectorAll("input")[0].value,
             'param2':obj.querySelectorAll("input")[1].value,
-            'param3':obj.querySelectorAll("input")[2].value}
+            'param3':obj.querySelectorAll("input")[2].value,
+            'sort':obj.querySelectorAll("select")[1].value}
         steps.push(step)
     });
     canvas.getFigure(document.getElementById("property-id").value).setUserData({'steps' : steps});
@@ -104,6 +111,12 @@ function refreshAction(obj){
     };
     if (['pivot'].includes(obj.value)){
         tr.querySelectorAll("input")[2].classList.remove("hidden");
+    };
+    if (['rename', 'type','pivot', 'addcol','dropcol', 'query', 'limit'].includes(obj.value)){
+        tr.querySelectorAll("select")[1].classList.add("hidden");
+    };
+    if (['sort', ].includes(obj.value)){
+        tr.querySelectorAll("select")[1].classList.remove("hidden");
     };
 }
 

@@ -16,11 +16,17 @@ class RuntimeTransform(Runtime):
         for step in self.steps:
             self.debug("run step %s : %s " % (step["action"], step["param1"]))
             if step["action"] == 'rename':
-                in1 = in1.rename(columns={step["param1"]: step["param2"], })
+                if step["param1"] in in1.index.names:
+                    in1 = in1.rename_axis(index={step["param1"]: step["param2"]})
+                else:
+                    in1 = in1.rename(columns={step["param1"]: step["param2"], })
             if step["action"] == 'dropcol':
+                if step["param1"] in in1.index.names:
+                    in1 = in1.reset_index(level=step["param1"]) 
                 in1 = in1.drop(columns=strtolist(step["param1"]))
             if step["action"] == 'sort':
-                in1 = in1.sort_values(by=strtolist(step["param1"]))
+                ascending = True if step["sort"] == "ascending" else False
+                in1 = in1.sort_values(by=strtolist(step["param1"]), ascending=ascending)
             if step["action"] == 'query':
                 query = step["param1"].replace(" is null", ".isnull()").replace(" is not null", ".isnull() == False")
                 in1.query(query, inplace=True)

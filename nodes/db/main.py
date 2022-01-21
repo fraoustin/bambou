@@ -300,15 +300,18 @@ class RuntimeDb(Runtime):
                 if self.loc == 'local':
                     self.debug("read local %s" % pathfile)
                     if self.type == 'csv':
-                        return pandas.read_csv(pathfile, sep=self.delimiter)
+                        in1 = pandas.read_csv(pathfile, sep=self.delimiter)
                     if self.type == 'xlsx':
-                        return pandas.read_excel(pathfile, sheet_name=sheet)
+                        in1 = pandas.read_excel(pathfile, sheet_name=sheet)
                     if self.type == 'json':
-                        return pandas.read_json(pathfile)
+                        in1 = pandas.read_json(pathfile)
                     if self.type == 'xml':
-                        return pandas.read_xml(pathfile)
+                        in1 = pandas.read_xml(pathfile)
                     if self.type == 'fwf':
-                        return pandas.read_fwf(pathfile, skiprows=int(self.skiprows), skipfooter=int(self.skipfooter), colspecs=colspecs, names=names)
+                        in1 = pandas.read_fwf(pathfile, skiprows=int(self.skiprows), skipfooter=int(self.skipfooter), colspecs=colspecs, names=names)
+                    if self.delafter == 'true':
+                        os.remove(pathfile)
+                    return in1
                 if self.loc in ('webdav', 'sftp', 'ftp', 'sharepoint365', 'googledrive'):
                     self.debug("connect %s %s" % (self.loc, self.locserver))
                     if self.loc == 'webdav':
@@ -329,15 +332,17 @@ class RuntimeDb(Runtime):
                     cli.close()
                     self.debug("read local %s" % path)
                     if self.type == 'csv':
-                        return pandas.read_csv(path, sep=self.delimiter)
+                        in1 = pandas.read_csv(path, sep=self.delimiter)
                     if self.type == 'xlsx':
-                        return pandas.read_excel(path, sheet_name=sheet)
+                        in1 = pandas.read_excel(path, sheet_name=sheet)
                     if self.type == 'json':
-                        return pandas.read_json(path)
+                        in1 = pandas.read_json(path)
                     if self.type == 'xml':
-                        return pandas.read_xml(path)
+                        in1 = pandas.read_xml(path)
                     if self.type == 'xml':
-                        return pandas.read_xml(path)
+                        in1 = pandas.read_xml(path)
+                    if self.delafter == 'true':
+                        cli.clean(pathfile)
             if self.action == 'write':
                 if self.loc == 'local':
                     if (os.path.isdir(os.path.dirname(os.path.abspath(pathfile)))) is False:

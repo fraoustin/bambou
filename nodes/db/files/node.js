@@ -127,6 +127,15 @@ var bodydb = `
         </select>
         </td>
     </tr>
+    <tr class="action read csv xlsx json xml fwf">
+        <td><label class="siimple-label">delete after read: </label></td>
+        <td>
+            <select id="delafter" name="delafter" class="siimple-select siimple-select--fluid">
+                <option value="false">False</option>
+                <option value="true">True</option>
+            </select>
+        </td>
+    </tr>
     <tr class="csv xlsx json xml fwf">
         <td><label class="siimple-label">Location</label></td>
         <td>
@@ -266,6 +275,7 @@ var NodeDb = Node.extend({
             "seccret" : "",
             "skiprows" : 0,
             "skipfooter" : 0,
+            "delafter" : "false",
             "fields" : []
 
         })
@@ -300,6 +310,7 @@ var NodeDb = Node.extend({
         document.getElementById("locuser").value = this.getUserData()["locuser"];
         document.getElementById("locpassword").value = this.getUserData()["locpassword"];
         document.getElementById("secret").value = this.getUserData()["secret"] || '';
+        document.getElementById("delafter").value = this.getUserData()["delafter"] || 'false';
         document.getElementById("save").onclick = save_parameterdb;
         var hgt = document.body.clientHeight - 535;
         document.getElementById('query').style.height = hgt + "px";
@@ -416,6 +427,7 @@ function save_parameterdb(){
         "skipfooter": document.getElementById("skipfooter").value,
         "skiprows": document.getElementById("skiprows").value,
         "secret": document.getElementById("secret").value || '',
+        "delafter": document.getElementById("delafter").value || 'false',
         "fields": fields
     });
     saveFlow();
