@@ -22,7 +22,7 @@ class RuntimeTransform(Runtime):
                     in1 = in1.rename(columns={step["param1"]: step["param2"], })
             if step["action"] == 'dropcol':
                 if step["param1"] in in1.index.names:
-                    in1 = in1.reset_index(level=step["param1"]) 
+                    in1 = in1.reset_index(level=step["param1"])
                 in1 = in1.drop(columns=strtolist(step["param1"]))
             if step["action"] == 'sort':
                 ascending = True if step["sort"] == "ascending" else False
